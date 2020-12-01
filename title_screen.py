@@ -18,6 +18,7 @@ def title_screen(screen):
         bg_rgb=BLUE,
         text_rgb=WHITE,
         text="START",
+        id=0,
         action=GameState.NEWGAME,
     )
     quit_btn = element.UIElement(
@@ -26,6 +27,7 @@ def title_screen(screen):
         bg_rgb=BLUE,
         text_rgb=WHITE,
         text="QUIT",
+        id=1,
         action=GameState.QUIT
     )
     buttons = [start_btn, quit_btn]
