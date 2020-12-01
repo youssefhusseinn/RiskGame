@@ -34,7 +34,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="1",
         id="us1",
         action=None
     )
@@ -43,7 +43,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="2",
         id="us2",
         action=None
     )
@@ -52,7 +52,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="3",
         id="us3",
         action=None
     )
@@ -61,7 +61,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="4",
         id="us4",
         action=None
     )
@@ -70,7 +70,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="5",
         id="us5",
         action=None
     )
@@ -79,7 +79,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="6",
         id="us6",
         action=None
     )
@@ -88,7 +88,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="7",
         id="us7",
         action=None
     )
@@ -97,7 +97,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="8",
         id="us8",
         action=None
     )
@@ -106,7 +106,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="9",
         id="us9",
         action=None
     )
@@ -115,7 +115,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="10",
         id="us10",
         action=None
     )
@@ -124,7 +124,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="11",
         id="us11",
         action=None
     )
@@ -133,7 +133,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="12",
         id="us12",
         action=None
     )
@@ -142,7 +142,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="13",
         id="us13",
         action=None
     )
@@ -151,7 +151,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="14",
         id="us14",
         action=None
     )
@@ -160,7 +160,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="15",
         id="us15",
         action=None
     )
@@ -169,7 +169,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="16",
         id="us16",
         action=None
     )
@@ -178,7 +178,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="17",
         id="us17",
         action=None
     )
@@ -187,7 +187,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="18",
         id="us18",
         action=None
     )
@@ -196,7 +196,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="19",
         id="us19",
         action=None
     )
@@ -205,7 +205,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="20",
         id="us20",
         action=None
     )
@@ -214,7 +214,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="21",
         id="us21",
         action=None
     )
@@ -223,7 +223,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="22",
         id="us22",
         action=None
     )
@@ -233,7 +233,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="23",
         id="us23",
         action=None
     )
@@ -242,7 +242,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="24",
         id="us24",
         action=None
     )
@@ -251,7 +251,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="25",
         id="us25",
         action=None
     )
@@ -260,7 +260,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="26",
         id="us26",
         action=None
     )
@@ -269,7 +269,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="27",
         id="us27",
         action=None
     )
@@ -278,7 +278,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="28",
         id="us28",
         action=None
     )
@@ -287,7 +287,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="29",
         id="us29",
         action=None
     )
@@ -296,7 +296,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="30",
         id="us30",
         action=None
     )
@@ -305,7 +305,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="31",
         id="us31",
         action=None
     )
@@ -314,7 +314,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="32",
         id="us32",
         action=None
     )
@@ -323,7 +323,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="33",
         id="us33",
         action=None
     )
@@ -332,7 +332,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="34",
         id="us34",
         action=None
     )
@@ -341,7 +341,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="35",
         id="us35",
         action=None
     )
@@ -350,7 +350,7 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="36",
         id="us36",
         action=None
     )
@@ -359,11 +359,11 @@ def us_screen(screen):
         font_size=50,
         bg_rgb=WHITE,
         text_rgb=BLACK,
-        text="0",
+        text="37",
         id="us37",
         action=None
     )
-    usmapimage = pygame.image.load(r'.\assets\USMAP.png')
+    usmapimage = pygame.image.load("assets/USMAP.png")
     buttons = [country_us_1,country_us_2,country_us_3,
                country_us_4,country_us_5,country_us_6,
                country_us_7,country_us_8,country_us_9,

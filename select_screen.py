@@ -39,9 +39,9 @@ def select_screen(screen):
         action=GameState.us,
     )
     buttons=[return_btn,egypt_btn,us_btn]
-    egyptmapimage = pygame.image.load(r'.\assets\egyptmapchoice.png')
-    usmapimage = pygame.image.load(r'.\assets\usmapchoice.png')
-    image4 = pygame.image.load(r'.\assets\choosemap.png')
+    egyptmapimage = pygame.image.load('assets/egyptmapchoice.png')
+    usmapimage = pygame.image.load('assets/usmapchoice.png')
+    image4 = pygame.image.load('assets/choosemap.png')
 
 
 

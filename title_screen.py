@@ -31,7 +31,7 @@ def title_screen(screen):
         action=GameState.QUIT
     )
     buttons = [start_btn, quit_btn]
-    titleimage = pygame.image.load(r'.\assets\gamename.png')
+    titleimage = pygame.image.load('assets/gamename.png')
 
 
     while True:

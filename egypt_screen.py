@@ -23,7 +23,7 @@ def egypt_screen(screen):
     )
 
     buttons=[return_btn]
-    image = pygame.image.load(r'F:\risk\assets\egyptmap.png')
+    image = pygame.image.load('assets/egyptmap.png')
 
 
 
