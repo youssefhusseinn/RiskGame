@@ -39,7 +39,7 @@ def main():
 
         if game_state == GameState.QUIT:
             pygame.quit()
-
+            break
         if(game_state== GameState.egypt):
             game_state = egypt_screen(screen)
         if (game_state == GameState.us):

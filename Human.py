@@ -1,4 +1,6 @@
 from Agent import *
+
+
 class Human(Agent):
 
     def takeTurn(self):
@@ -11,7 +13,5 @@ class Human(Agent):
         pass
 
     def chooseCountryToAddTroops(self) -> Country:
-        #choose country from GUI
+        # choose country from GUI
         pass
-
-
