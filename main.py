@@ -20,7 +20,6 @@ DARKRED=(229,12,22)
 DARKBLUE=(2,8,126)
 
 
-
 def main():
     pygame.init()
 
@@ -29,8 +28,8 @@ def main():
     game_state = GameState.TITLE
     running = True
     while running:
-        usgame = USGame(Agent(), Agent())
-        usgame.splitCountriesFixed()
+        #usgame = USGame(Agent(), Agent())
+        #usgame.splitCountriesFixed()
         if game_state == GameState.TITLE:
             game_state = title_screen(screen)
 
@@ -40,6 +39,7 @@ def main():
         if game_state == GameState.QUIT:
             pygame.quit()
             break
+
         if(game_state== GameState.egypt):
             game_state = egypt_screen(screen)
         if (game_state == GameState.us):
