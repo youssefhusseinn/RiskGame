@@ -9,6 +9,7 @@ class Agent:
 
     def takeTurn(self):
         #TODO
+
         amount = self.calcBonusTroops()
         self.addTroops(amount)
 
