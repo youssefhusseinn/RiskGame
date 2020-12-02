@@ -8,8 +8,6 @@ class Agent:
         self.countries = dict()
 
     def takeTurn(self):
-        #TODO
-
         amount = self.calcBonusTroops()
         self.addTroops(amount)
 
