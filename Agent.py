@@ -4,7 +4,7 @@ class Agent:
 
     def __init__(self):
         self.color = None
-        self.countries = dict()
+        self.countries = dict(Country,int)
 
     def takeTurn(self):
         amount = self.calcBonusTroops()
@@ -26,5 +26,9 @@ class Agent:
             amount -= 1
 
     def chooseCountryToAddTroops(self) -> Country:
+        # depends on each agent... every agent has his own choosing algorithm
+        pass
+
+    def chooseCountryForAttacking(self) -> Country:
         # depends on each agent... every agent has his own choosing algorithm
         pass

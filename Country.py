@@ -6,3 +6,5 @@ class Country:
         self.neighbors = {}
         self.id = id
 
+    def getNumberOfTroops(self) -> int:
+        return self.agent.countries[self]
