@@ -66,6 +66,7 @@ class EGGame():
         print(self.agents[1].countries)
 
     def splitCountriesRandomly(self):
+
         agentcount = [0, 0]
         for country in self.countries:
             if agentcount[0] <= 11 and agentcount[1] < 11:
