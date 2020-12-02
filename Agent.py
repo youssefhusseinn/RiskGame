@@ -1,5 +1,6 @@
 from Country import *
 
+
 class Agent:
 
     def __init__(self):
@@ -7,16 +8,16 @@ class Agent:
         self.countries = dict()
 
     def takeTurn(self):
+        #TODO
         amount = self.calcBonusTroops()
         self.addTroops(amount)
-
 
     def calcBonusTroops(self) -> int:
         numberOfCountries = len(self.countries)
         return max(3, numberOfCountries // 3)
 
     def attack(self):
-        #depends on each agent.. every agent has his own attacking algorithm
+        # depends on each agent.. every agent has his own attacking algorithm
         pass
 
     def addTroops(self, amount):
