@@ -20,6 +20,7 @@ class AgressiveAgent(Agent):
                 country = c
         return country
 
+
     def attack(self):
         attackedSoFar = set()
         canAttack = True
