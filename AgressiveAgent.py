@@ -44,22 +44,3 @@ class AgressiveAgent(Agent):
                 self.countries[attackingCountry] = 1
                 self.countries[neighborWithMaxTroops] = neighborWithMaxTroops.getNumberOfTroops()
                 attackedSoFar.add(neighborWithMaxTroops)
-
-
-
-
-
-        """""
-        countryWithMaxTroops = None
-        maxTroops = 0
-        for c in self.countries:
-            if self.countries[c] > maxTroops:
-                countryWithMaxTroops = c
-                maxTroops = self.countries[c]
-
-        while True:
-            neighborWithLeastTroops = None
-            minTroops = int(1e6)
-            for neighbor in countryWithMaxTroops.neighbors:
-                    if 
-        """""
