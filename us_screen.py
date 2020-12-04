@@ -36,7 +36,7 @@ def us_screen(screen):
         text_rgb=BLACK,
         text="0",
         id="us1",
-        action=None
+        action=UIelement.update_text(int(text))
     )
     country_us_2 = element.UIElement(
         center_position=(150, 150),
