@@ -510,7 +510,7 @@ def us_screen(screen):
             # id bta3ha 3ashan tb2a refrence lena f 23mlha zyha fy egp
             #wa b3den 23mlha comment
             #button.set_text(button.country.label)
-            button.update_text(button.text,button.country.color)
+            button.update_text(button.country.label,button.country.color)
             if ui_action is not None:
                 return ui_action
             button.draw(screen)

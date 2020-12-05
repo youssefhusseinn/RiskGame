@@ -39,9 +39,9 @@ class USGame():
 
 """
     def attacking(self):
-        self.attack[0].label="000000"
+        self.attack[0].label="10"
         self.attack[0].color=DARKRED
-        self.attack[1].label="111111"
+        self.attack[1].label="5"
         self.attack[1].color=DARKBLUE
 
 
