@@ -9,6 +9,8 @@ from UIelement import *
 import UISprite
 from UISprite import *
 from UISprite import UISprite
+import USGame
+from USGame import *
 BLUE = (9, 5, 101)
 WHITE = (255, 255, 255,0)
 BLACK=(0,0,0)
@@ -17,9 +19,9 @@ DARKBLUE=(2,8,126)
 def us_screen(screen):
 
     element = UIelement
+    state= USGame()
     sprite= UISprite
     text="0"
-
     return_btn = element.UIElement(
         center_position=(250, 700),
         font_size=30,
@@ -36,7 +38,7 @@ def us_screen(screen):
         text_rgb=BLACK,
         text="1",
         id="us1",
-        action=UIelement.update_text(int(text))
+        action=None
     )
     country_us_2 = element.UIElement(
         center_position=(150, 150),

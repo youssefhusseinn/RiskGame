@@ -1,9 +1,13 @@
 import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
-
+import USGame
+from EGGame import EGGame
+from USGame import *
 import main
 from main import *
+import USGame
+from USGame import *
 BLUE = (9, 5, 101)
 WHITE = (255, 255, 255)
 DARKRED=(229,12,22)
@@ -16,7 +20,6 @@ def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
 
 class UIElement(Sprite):
     """ An user interface element that can be added to a surface """
-
 
     def __init__(self, center_position, text, font_size, bg_rgb, text_rgb,id,action=None):
         """
@@ -68,10 +71,16 @@ class UIElement(Sprite):
             return self.rects[1] if self.mouse_over else self.rects[0]
 
     def update(self, mouse_pos,mouse_up):
-
+            stateus =USGame()
+            stateeg=EGGame()
             if self.rect.collidepoint(mouse_pos):
                 self.mouse_over = True
                 if mouse_up:
+                    my_string = str(self.id)
+                    if my_string.find("us") == False:
+                         stateus.addelements(self.id)
+                    if my_string.find("eg") == False:
+                        stateeg.addelements(self.id)
                     return self.action
             else:
                 self.mouse_over = False
@@ -119,3 +128,4 @@ class UIElement(Sprite):
                 highlighted_image.get_rect(center=self.center_position),
             ]
             self.text = text
+

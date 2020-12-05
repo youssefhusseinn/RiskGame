@@ -3,10 +3,13 @@ import random
 from Country import *
 
 
-class USGame():
 
-    def __init__(self, agent1, agent2):
-        self.agents = [agent1, agent2]
+class USGame():
+    attack =[]
+
+
+    def __init__(self):
+       ## self.agents = [agent1, agent2]
         c1 = Country(1)
         c2 = Country(2)
         c3 = Country(3)
@@ -106,6 +109,14 @@ class USGame():
             else:
                 self.agents[1].countries.add(country)
                 agentcount[1] += 1
+
+
+
+    def addelements(self, id):
+        self.attack.append(id)
+        print(self.attack)
+        if len(self.attack)>=2:
+            self.attack.clear()
 
 # map = {
 #         1: [2, 4],
