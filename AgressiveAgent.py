@@ -22,7 +22,7 @@ class AgressiveAgent(Agent):
 
 
     def attack(self):
-        attackedSoFar = set()
+        #attackedSoFar = set()
         #canAttack = True
         #while canAttack:
         numberOfTroopsOfNeighborWithMaxTroops = 0
@@ -38,9 +38,11 @@ class AgressiveAgent(Agent):
                             neighborWithMaxTroops = neighbor
                             attackingCountry = country
 
-        if attackingCountry and neighborWithMaxTroops and neighborWithMaxTroops not in attackedSoFar:
+        if attackingCountry and neighborWithMaxTroops and neighborWithMaxTroops:
+                #not in attackedSoFar:
             #canAttack = True
-            neighborWithMaxTroops.agent.countries[neighborWithMaxTroops] = self.countries[attackingCountry] - numberOfTroopsOfNeighborWithMaxTroops - 1
+            #neighborWithMaxTroops.agent.countries[neighborWithMaxTroops] = self.countries[attackingCountry] - numberOfTroopsOfNeighborWithMaxTroops - 1
+            neighborWithMaxTroops.agent.countries[neighborWithMaxTroops] = self.countries[attackingCountry] - 1
             self.countries[attackingCountry] = 1
             self.countries[neighborWithMaxTroops] = neighborWithMaxTroops.getNumberOfTroops()
-            attackedSoFar.add(neighborWithMaxTroops)
+            #attackedSoFar.add(neighborWithMaxTroops)
