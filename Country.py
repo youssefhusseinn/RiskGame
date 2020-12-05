@@ -10,6 +10,7 @@ class Country:
         self.id = id
         self.color=BLACK
         self.troops=0
+        # owner
 
     def getNumberOfTroops(self) -> int:
         return self.agent.countries[self]

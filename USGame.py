@@ -46,7 +46,8 @@ class USGame():
 
 
     def addelements(self,country):
-        self.attack.append(country)
+        if country not in self.attack:
+            self.attack.append(country)
         if len(self.attack) ==2:
             self.attacking()
         if len(self.attack)>=2:
