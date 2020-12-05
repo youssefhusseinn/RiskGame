@@ -8,6 +8,8 @@ import main
 from main import *
 import USGame
 from USGame import *
+import Country
+from Country import *
 BLUE = (9, 5, 101)
 WHITE = (255, 255, 255)
 DARKRED=(229,12,22)
@@ -21,7 +23,8 @@ def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
 class UIElement(Sprite):
     """ An user interface element that can be added to a surface """
 
-    def __init__(self, center_position, text, font_size, bg_rgb, text_rgb,id,action=None):
+    def __init__(self, center_position, text, font_size, bg_rgb, text_rgb,id,country,action=None):
+
         """
         Args:
             center_position - tuple (x, y)
@@ -30,6 +33,7 @@ class UIElement(Sprite):
             bg_rgb (background colour) - tuple (r, g, b)
             text_rgb (text colour) - tuple (r, g, b)
         """
+        self.country= country
         self.text=text
         self.font_size=font_size
         self.bg_rgb =bg_rgb
@@ -59,6 +63,7 @@ class UIElement(Sprite):
         super().__init__()
         self.action = action
 
+
         # properties that vary the image and its rect when the mouse is over the element
 
 
@@ -78,9 +83,9 @@ class UIElement(Sprite):
                 if mouse_up:
                     my_string = str(self.id)
                     if my_string.find("us") == False:
-                         stateus.addelements(self.id)
+                         stateus.addelements(self.country)
                     if my_string.find("eg") == False:
-                        stateeg.addelements(self.id)
+                        stateeg.addelements(self.country)
                     return self.action
             else:
                 self.mouse_over = False
