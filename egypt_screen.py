@@ -7,14 +7,19 @@ import gamestate
 from gamestate import GameState
 import EGGame
 from EGGame import *
+import player
+from player import *
+
 BLUE = (9, 5, 101)
-WHITE = (255, 255, 255,0)
-BLACK=(0,0,0)
-DARKRED=(229,12,22)
-DARKBLUE=(2,8,126)
+WHITE = (255, 255, 255, 0)
+BLACK = (0, 0, 0)
+DARKRED = (229, 12, 22)
+DARKBLUE = (2, 8, 126)
+
+
 def egypt_screen(screen):
-    element= UIelement
-    c0=Country("Return to main menu","Return to main menu")
+    element = UIelement
+    c0 = Country("Return to main menu", "Return to main menu")
     c1 = Country(1, "eg1")
     c2 = Country(2, "eg2")
     c3 = Country(3, "eg3")
@@ -60,6 +65,58 @@ def egypt_screen(screen):
     c20.neighbors = {c2, c18, c19, c21}
     c21.neighbors = {c2, c18, c20, c22}
     c22.neighbors = {c2, c18, c21}
+    redPlayer = player(DARKRED)
+    bluePlayer = player(DARKBLUE)
+    available_countries = [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10,
+                           c11, c12, c13, c14, c15, c16, c17, c18, c19,
+                           c20, c21, c22]
+    available_countriesIDs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+                              11, 12, 13, 14, 15, 16, 17, 18, 19,
+                              20, 21, 22]
+    redPlayer = player(DARKRED)
+    bluePlayer = player(DARKBLUE)
+    redTroops = 20
+    blueTroops = 20
+
+    canAddRed = True
+    canAddBlue = True
+
+    while canAddRed or canAddBlue:
+        # redTroops
+        if canAddRed:
+
+            if available_countries.__len__() != 0:
+                country = random.choice(available_countries)
+                available_countries.remove(country)
+                country.setOwner(redPlayer)
+                redPlayer.addcountry(country)
+                redTroops -= 1
+            else:
+                country = random.choice(redPlayer.countries)
+                while country.troops == 3:
+                    country = random.choice(redPlayer.countries)
+                redTroops -= 1
+            country.increaseNumOfTroops(1)
+            if redTroops == 0:
+                canAddRed = False
+
+        # blueTroops
+        if canAddBlue:
+            if available_countries.__len__() != 0:
+                country = random.choice(available_countries)
+                available_countries.remove(country)
+                country.setOwner(bluePlayer)
+                bluePlayer.addcountry(country)
+                blueTroops -= 1
+            else:
+                country = random.choice(bluePlayer.countries)
+                while country.troops == 3:
+                    country = random.choice(bluePlayer.countries)
+                blueTroops -= 1
+            country.increaseNumOfTroops(1)
+            if blueTroops == 0:
+                canAddBlue = False
+
     return_btn = element.UIElement(
         center_position=(150, 720),
         font_size=20,
@@ -107,7 +164,7 @@ def egypt_screen(screen):
         bg_rgb=WHITE,
         text_rgb=c4.color,
         text=c4.label,
-        country=c4,        id="eg4",
+        country=c4, id="eg4",
         action=None
     )
     country_eg_5 = element.UIElement(
@@ -136,7 +193,7 @@ def egypt_screen(screen):
         bg_rgb=WHITE,
         text_rgb=c7.color,
         text=c7.label,
-        country=c7,        id="eg7",
+        country=c7, id="eg7",
         action=None
     )
     country_eg_8 = element.UIElement(
@@ -296,11 +353,8 @@ def egypt_screen(screen):
                country_eg_13, country_eg_14, country_eg_15,
                country_eg_16, country_eg_17, country_eg_18,
                country_eg_19, country_eg_20, country_eg_21,
-               country_eg_22,return_btn]
+               country_eg_22, return_btn]
     image = pygame.image.load('assets/egyptmapgame.png')
-
-
-
 
     while True:
         mouse_up = False
@@ -313,11 +367,9 @@ def egypt_screen(screen):
         for button in buttons:
             ui_action = button.update(pygame.mouse.get_pos(), mouse_up)
             # button.set_text(button.id)
-            button.update_text(button.country.label,button.country.color)
+            button.update_text(button.country.label, button.country.color)
             if ui_action is not None:
                 return ui_action
             button.draw(screen)
-
-
 
         pygame.display.flip()

@@ -11,56 +11,66 @@ from UISprite import *
 from UISprite import UISprite
 import USGame
 from USGame import *
-BLUE = (9, 5, 101)
-WHITE = (255, 255, 255,0)
-BLACK=(0,0,0)
-DARKRED=(229,12,22)
-DARKBLUE=(2,8,126)
-def us_screen(screen):
+import player
+from player import *
 
+BLUE = (9, 5, 101)
+WHITE = (255, 255, 255, 0)
+BLACK = (0, 0, 0)
+DARKRED = (229, 12, 22)
+DARKBLUE = (2, 8, 126)
+
+
+def assignTroopsRandomly(redPlayer, bluePlayer, countries):
+    available_countries = countries
+    for i in range(0, 37, 1):
+        country = random(available_countries)
+
+
+def us_screen(screen):
     element = UIelement
-    state= USGame()
-    sprite= UISprite
-    text="0"
-    c0=Country("Return to main menu","Return to main menu")
-    c1 = Country("us1","us1")
-    c2 = Country("us2","us2")
-    c3 = Country("us3","us3")
-    c4 = Country("us4","us4")
-    c5 = Country("us5","us5")
-    c6 = Country("us6","us6")
-    c7 = Country("us7","us7")
-    c8 = Country("us8","us8")
-    c9 = Country("us9","us9")
-    c10 = Country("us10","us10")
-    c11 = Country("us11","us11")
-    c12 = Country("us12","us12")
-    c13 = Country("us13","us13")
-    c14 = Country("us14","us14")
-    c15 = Country("us15","us15")
-    c16 = Country("us16","us16")
-    c17 = Country("us17","us17")
-    c18 = Country("us18","us18")
-    c19 = Country("us19","us19")
-    c20 = Country("us20","us20")
-    c21 = Country("us21","us21")
-    c22 = Country("us22","us22")
-    c23 = Country("us23","us23")
-    c24 = Country("us24","us24")
-    c25 = Country("us25","us25")
-    c26 = Country("us26","us26")
-    c27 = Country("us27","us27")
-    c28 = Country("us28","us28")
-    c29 = Country("us29","us29")
-    c30 = Country("us30","us30")
-    c31 = Country("us31","us31")
-    c32 = Country("us32","us32")
-    c33 = Country("us33","us33")
-    c34 = Country("us34","us34")
-    c35 = Country("us35","us35")
-    c36 = Country("us36","us36")
-    c37 = Country("us37","us37")
-    c0.neighbors={}
+    state = USGame()
+    sprite = UISprite
+    text = "0"
+    c0 = Country("Return to main menu", "Return to main menu")
+    c1 = Country("us1", "us1")
+    c2 = Country("us2", "us2")
+    c3 = Country("us3", "us3")
+    c4 = Country("us4", "us4")
+    c5 = Country("us5", "us5")
+    c6 = Country("us6", "us6")
+    c7 = Country("us7", "us7")
+    c8 = Country("us8", "us8")
+    c9 = Country("us9", "us9")
+    c10 = Country("us10", "us10")
+    c11 = Country("us11", "us11")
+    c12 = Country("us12", "us12")
+    c13 = Country("us13", "us13")
+    c14 = Country("us14", "us14")
+    c15 = Country("us15", "us15")
+    c16 = Country("us16", "us16")
+    c17 = Country("us17", "us17")
+    c18 = Country("us18", "us18")
+    c19 = Country("us19", "us19")
+    c20 = Country("us20", "us20")
+    c21 = Country("us21", "us21")
+    c22 = Country("us22", "us22")
+    c23 = Country("us23", "us23")
+    c24 = Country("us24", "us24")
+    c25 = Country("us25", "us25")
+    c26 = Country("us26", "us26")
+    c27 = Country("us27", "us27")
+    c28 = Country("us28", "us28")
+    c29 = Country("us29", "us29")
+    c30 = Country("us30", "us30")
+    c31 = Country("us31", "us31")
+    c32 = Country("us32", "us32")
+    c33 = Country("us33", "us33")
+    c34 = Country("us34", "us34")
+    c35 = Country("us35", "us35")
+    c36 = Country("us36", "us36")
+    c37 = Country("us37", "us37")
+    c0.neighbors = {}
     c1.neighbors = {c2, c4}
     c2.neighbors = {c1, c3, c4, c5}
     c3.neighbors = {c2, c5, c9}
@@ -98,6 +108,49 @@ def us_screen(screen):
     c35.neighbors = {c31, c32, c36, c37}
     c36.neighbors = {c31, c35}
     c37.neighbors = {c33, c35}
+
+    available_countries = [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10,
+                           c11, c12, c13, c14, c15, c16, c17, c18, c19,
+                           c20, c21, c22, c23, c24, c25, c26, c27, c28, c29,
+                           c30, c31, c32, c33, c34, c35, c36, c37]
+    redPlayer = player(DARKRED)
+    bluePlayer = player(DARKBLUE)
+    redTroops = 20
+    blueTroops = 20
+
+    canAddRed = True
+    canAddBlue = True
+
+    while canAddRed or canAddBlue:
+        # redTroops
+        if canAddRed:
+            if available_countries.__len__() != 0:
+                country = random.choice(available_countries)
+                available_countries.remove(country)
+                country.setOwner(redPlayer)
+                redPlayer.addcountry(country)
+                redTroops -= 1
+            else:
+                country = random.choice(redPlayer.countries)
+                redTroops -= 1
+            country.increaseNumOfTroops(1)
+            if redTroops == 0:
+                canAddRed = False
+        # blueTroops
+        if canAddBlue:
+
+            if available_countries.__len__() != 0:
+                country = random.choice(available_countries)
+                available_countries.remove(country)
+                country.setOwner(bluePlayer)
+                bluePlayer.addcountry(country)
+                blueTroops -= 1
+            else:
+                country = random.choice(bluePlayer.countries)
+                blueTroops -= 1
+            country.increaseNumOfTroops(1)
+            if blueTroops == 0:
+                canAddBlue = False
 
     return_btn = element.UIElement(
         center_position=(250, 700),
@@ -162,7 +215,7 @@ def us_screen(screen):
         id="us5",
         action=None
     )
-    country_us_6= element.UIElement(
+    country_us_6 = element.UIElement(
         center_position=(380, 100),
         font_size=50,
         bg_rgb=WHITE,
@@ -318,7 +371,7 @@ def us_screen(screen):
         bg_rgb=WHITE,
         text_rgb=c21.color,
         text=c21.label,
-        country=c21,        id="us21",
+        country=c21, id="us21",
         action=None
     )
     country_us_22 = element.UIElement(
@@ -327,7 +380,7 @@ def us_screen(screen):
         bg_rgb=WHITE,
         text_rgb=c22.color,
         text=c22.label,
-        country=c22,        id="us22",
+        country=c22, id="us22",
         action=None
     )
 
@@ -337,7 +390,7 @@ def us_screen(screen):
         bg_rgb=WHITE,
         text_rgb=c23.color,
         text=c23.label,
-        country=c23,        id="us23",
+        country=c23, id="us23",
         action=None
     )
     country_us_24 = element.UIElement(
@@ -481,19 +534,19 @@ def us_screen(screen):
         action=None
     )
     usmapimage = pygame.image.load("assets/USMAP.png")
-    buttons = [country_us_1,country_us_2,country_us_3,
-               country_us_4,country_us_5,country_us_6,
-               country_us_7,country_us_8,country_us_9,
-               country_us_10,country_us_11,country_us_12,
-               country_us_13,country_us_14,country_us_15,
-               country_us_16,country_us_17,country_us_18,
-               country_us_19,country_us_20,country_us_21,
-               country_us_22,country_us_23,country_us_24,
-               country_us_25,country_us_26,country_us_27,
-               country_us_28,country_us_29,country_us_30,
-               country_us_31,country_us_32,country_us_33,
-               country_us_34,country_us_35,country_us_36,
-               country_us_37,return_btn]
+    buttons = [country_us_1, country_us_2, country_us_3,
+               country_us_4, country_us_5, country_us_6,
+               country_us_7, country_us_8, country_us_9,
+               country_us_10, country_us_11, country_us_12,
+               country_us_13, country_us_14, country_us_15,
+               country_us_16, country_us_17, country_us_18,
+               country_us_19, country_us_20, country_us_21,
+               country_us_22, country_us_23, country_us_24,
+               country_us_25, country_us_26, country_us_27,
+               country_us_28, country_us_29, country_us_30,
+               country_us_31, country_us_32, country_us_33,
+               country_us_34, country_us_35, country_us_36,
+               country_us_37, return_btn]
 
     while True:
         mouse_up = False
@@ -501,19 +554,18 @@ def us_screen(screen):
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
         screen.fill(BLUE)
-        screen.blit(usmapimage,(50,0))
-        i=0;
+        screen.blit(usmapimage, (50, 0))
+        i = 0;
         for button in buttons:
 
             ui_action = button.update(pygame.mouse.get_pos(), mouse_up)
-            #ossama el fucntion deh 3ashan 25ly text ely yzhr 3la map
+            # ossama el fucntion deh 3ashan 25ly text ely yzhr 3la map
             # id bta3ha 3ashan tb2a refrence lena f 23mlha zyha fy egp
-            #wa b3den 23mlha comment
-            #button.set_text(button.country.label)
-            button.update_text(button.country.label,button.country.color)
+            # wa b3den 23mlha comment
+            # button.set_text(button.country.label)
+            button.update_text(button.country.label, button.country.color)
             if ui_action is not None:
                 return ui_action
             button.draw(screen)
-
 
         pygame.display.flip()
