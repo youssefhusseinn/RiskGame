@@ -22,25 +22,27 @@ class AgressiveAgent(Agent):
 
 
     def attack(self):
-        attackedSoFar = set()
-        canAttack = True
-        while canAttack:
-            numberOfTroopsOfNeighborWithMaxTroops = 0
-            neighborWithMaxTroops = None
-            attackingCountry = None
-            canAttack = False
-            for country in self.countries:
-                for neighbor in country.neighbors:
-                    if neighbor not in self.countries:
-                        if neighbor.getNumberOfTroops() < country.getNumberOfTroops()-1: #Found one to attack
-                            if numberOfTroopsOfNeighborWithMaxTroops < neighbor.getNumberOfTroops():
-                                numberOfTroopsOfNeighborWithMaxTroops = neighbor.getNumberOfTroops()
-                                neighborWithMaxTroops = neighbor
-                                attackingCountry = country
+        #attackedSoFar = set()
+        #canAttack = True
+        #while canAttack:
+        numberOfTroopsOfNeighborWithMaxTroops = 0
+        neighborWithMaxTroops = None
+        attackingCountry = None
+        #canAttack = False
+        for country in self.countries:
+            for neighbor in country.neighbors:
+                if neighbor not in self.countries:
+                    if neighbor.getNumberOfTroops() < country.getNumberOfTroops()-1: #Found one to attack
+                        if numberOfTroopsOfNeighborWithMaxTroops < neighbor.getNumberOfTroops():
+                            numberOfTroopsOfNeighborWithMaxTroops = neighbor.getNumberOfTroops()
+                            neighborWithMaxTroops = neighbor
+                            attackingCountry = country
 
-            if attackingCountry and neighborWithMaxTroops and neighborWithMaxTroops not in attackedSoFar:
-                canAttack = True
-                neighborWithMaxTroops.agent.countries[neighborWithMaxTroops] = self.countries[attackingCountry] - numberOfTroopsOfNeighborWithMaxTroops - 1
-                self.countries[attackingCountry] = 1
-                self.countries[neighborWithMaxTroops] = neighborWithMaxTroops.getNumberOfTroops()
-                attackedSoFar.add(neighborWithMaxTroops)
+        if attackingCountry and neighborWithMaxTroops and neighborWithMaxTroops:
+                #not in attackedSoFar:
+            #canAttack = True
+            #neighborWithMaxTroops.agent.countries[neighborWithMaxTroops] = self.countries[attackingCountry] - numberOfTroopsOfNeighborWithMaxTroops - 1
+            neighborWithMaxTroops.agent.countries[neighborWithMaxTroops] = self.countries[attackingCountry] - 1
+            self.countries[attackingCountry] = 1
+            self.countries[neighborWithMaxTroops] = neighborWithMaxTroops.getNumberOfTroops()
+            #attackedSoFar.add(neighborWithMaxTroops)
