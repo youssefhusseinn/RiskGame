@@ -14,7 +14,7 @@ DARKRED=(229,12,22)
 DARKBLUE=(2,8,126)
 def egypt_screen(screen):
     element= UIelement
-
+    c0=Country("Return to main menu","Return to main menu")
     c1 = Country(1, "eg1")
     c2 = Country(2, "eg2")
     c3 = Country(3, "eg3")
@@ -67,7 +67,7 @@ def egypt_screen(screen):
         text_rgb=WHITE,
         text="Return to main menu",
         id="0",
-        country=None,
+        country=c0,
         action=GameState.TITLE,
     )
 
@@ -313,7 +313,7 @@ def egypt_screen(screen):
         for button in buttons:
             ui_action = button.update(pygame.mouse.get_pos(), mouse_up)
             # button.set_text(button.id)
-            #button.update_text(button.text, DARKBLUE)
+            button.update_text(button.text,button.country.color)
             if ui_action is not None:
                 return ui_action
             button.draw(screen)

@@ -1,7 +1,8 @@
 import random
 
 from Country import *
-
+DARKRED=(229,12,22)
+DARKBLUE=(2,8,126)
 
 class EGGame():
     attack =[]
@@ -35,8 +36,19 @@ class EGGame():
                 self.agents[1].countries.add(country)
                 agentcount[1] += 1
     """
-    def addelements(self, id):
-        self.attack.append(id)
-        print(self.attack)
-        if len(self.attack)>=2:
+
+
+    def attacking(self):
+        self.attack[0].label = "000000"
+        self.attack[0].color = DARKRED
+        self.attack[1].label = "111111"
+        self.attack[1].color = DARKBLUE
+
+
+    def addelements(self, country):
+        if country not in self.attack:
+            self.attack.append(country)
+        if len(self.attack) == 2:
+            self.attacking()
+        if len(self.attack) >= 2:
             self.attack.clear()

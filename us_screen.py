@@ -514,7 +514,6 @@ def us_screen(screen):
             if ui_action is not None:
                 return ui_action
             button.draw(screen)
-            i=i+1
 
 
         pygame.display.flip()
