@@ -7,9 +7,12 @@ import gamestate
 from gamestate import GameState
 import EGGame
 from EGGame import *
+<<<<<<< Updated upstream
 import player
 from player import *
 
+=======
+>>>>>>> Stashed changes
 
 import random
 
@@ -24,8 +27,11 @@ def egypt_screen(screen):
     element = UIelement
     element= UIelement
 
+<<<<<<< Updated upstream
     c100 = Country("TURN:", "TURN:")
     c101 = Country("RED PLAYER", "RED PLAYER")
+=======
+>>>>>>> Stashed changes
 
     c0=Country("Return to main menu","Return to main menu")
     c1 = Country(1, "eg1")
