@@ -7,7 +7,7 @@ class Human:
 
     def attacking(self,country0,country1,c101,redPlayer,bluePlayer):
         if (c101.label== "RED PLAYER" and country0.owner==redPlayer and country1.owner==bluePlayer) or (c101.label== "BLUE PLAYER" and country0.owner==bluePlayer and country1.owner==redPlayer) :
-            if((int(country0.troops-1) >= int(country1.troops) ) and (country0.owner != country1.owner) and (country1 in country0.neighbors)):
+            if((int(int(country0.troops)-1) >= int(country1.troops) ) and (country0.owner != country1.owner) and (country1 in country0.neighbors)):
                  val = input("Enter amount of troop you want to attack with: ")
                  if(int(val)<=country0.troops-1 and int(val) >= country1.troops ):
                         country1.setNumOfTroops(val)
