@@ -21,9 +21,10 @@ DARKBLUE = (2, 8, 126)
 
 def egypt_screen(screen):
     element = UIelement
-    c0 = Country("Return to main menu", "Return to main menu")
     element= UIelement
 
+    c100 = Country("TURN:", "TURN:")
+    c101 = Country("RED PLAYER", "RED PLAYER")
 
     c0=Country("Return to main menu","Return to main menu")
     c1 = Country(1, "eg1")
@@ -82,8 +83,8 @@ def egypt_screen(screen):
                               20, 21, 22]
     redPlayer = player(DARKRED)
     bluePlayer = player(DARKBLUE)
-    redTroops = 20
-    blueTroops = 20
+    redTroops = 40
+    blueTroops = 40
     canAddRed = True
     canAddBlue = True
 
@@ -352,6 +353,26 @@ def egypt_screen(screen):
         id="eg22",
         action=None
     )
+    turn_button = element.UIElement(
+        center_position=(1150, 50),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=WHITE,
+        text="TURN :",
+        country=c100,
+        id="turnid",
+        action=None
+    )
+    player_button = element.UIElement(
+        center_position=(1260, 50),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=WHITE,
+        text="TURN :",
+        country=c101,
+        id="playerid",
+        action=None
+    )
     buttons = [country_eg_1, country_eg_2, country_eg_3,
                country_eg_4, country_eg_5, country_eg_6,
                country_eg_7, country_eg_8, country_eg_9,
@@ -359,7 +380,7 @@ def egypt_screen(screen):
                country_eg_13, country_eg_14, country_eg_15,
                country_eg_16, country_eg_17, country_eg_18,
                country_eg_19, country_eg_20, country_eg_21,
-               country_eg_22, return_btn]
+               country_eg_22, return_btn,turn_button,player_button]
     image = pygame.image.load('assets/egyptmapgame.png')
 
     while True:
@@ -369,13 +390,10 @@ def egypt_screen(screen):
                 mouse_up = True
         screen.fill(BLUE)
         screen.blit(image, (75, 50))
-
         for button in buttons:
-            ui_action = button.update(pygame.mouse.get_pos(), mouse_up)
-            # button.set_text(button.id)
+            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,c101)
             button.update_text(button.country.label, button.country.color)
             if ui_action is not None:
                 return ui_action
             button.draw(screen)
-
         pygame.display.flip()
