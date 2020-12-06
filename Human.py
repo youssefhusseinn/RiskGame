@@ -22,6 +22,7 @@ class Human:
                  return False
         else:
             print("you can not do this attack")
+            return False
 
 
 

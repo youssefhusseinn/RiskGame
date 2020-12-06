@@ -49,6 +49,10 @@ class USGame():
                        c102.setNumOfTroops(redPlayer.bonustroops)
 
                      flag1=True
+                 else:
+                     flag1=False
+                     self.attack.clear()
+
             else:
                 print("you should place all bonus troops first")
                 self.attack.clear()
