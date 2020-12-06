@@ -115,10 +115,13 @@ def us_screen(screen):
                            c11, c12, c13, c14, c15, c16, c17, c18, c19,
                            c20, c21, c22, c23, c24, c25, c26, c27, c28, c29,
                            c30, c31, c32, c33, c34, c35, c36, c37]
-    redPlayer = player(DARKRED)
-    bluePlayer = player(DARKBLUE)
-    redTroops = 40
-    blueTroops = 40
+    redPlayer = player(DARKRED,"RED PLAYER")
+    bluePlayer = player(DARKBLUE,"BLUE PLAYER")
+    c101.setOwner(redPlayer)
+    c101.color=redPlayer.color
+
+    redTroops = 20
+    blueTroops = 20
 
     canAddRed = True
     canAddBlue = True
@@ -578,7 +581,7 @@ def us_screen(screen):
         screen.fill(BLUE)
         screen.blit(usmapimage, (50, 0))
         for button in buttons:
-            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,c101)
+            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,c101,redPlayer,bluePlayer)
             button.update_text(button.country.label, button.country.color)
             if ui_action is not None:
                 return ui_action

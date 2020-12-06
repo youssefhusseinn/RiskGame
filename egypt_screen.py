@@ -73,18 +73,19 @@ def egypt_screen(screen):
     c20.neighbors = {c2, c18, c19, c21}
     c21.neighbors = {c2, c18, c20, c22}
     c22.neighbors = {c2, c18, c21}
-    redPlayer = player(DARKRED)
-    bluePlayer = player(DARKBLUE)
+
     available_countries = [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10,
                            c11, c12, c13, c14, c15, c16, c17, c18, c19,
                            c20, c21, c22]
     available_countriesIDs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
                               11, 12, 13, 14, 15, 16, 17, 18, 19,
                               20, 21, 22]
-    redPlayer = player(DARKRED)
-    bluePlayer = player(DARKBLUE)
-    redTroops = 40
-    blueTroops = 40
+    redPlayer = player(DARKRED,"RED PLAYER")
+    bluePlayer = player(DARKBLUE,"BLUE PLAYER")
+    c101.setOwner(redPlayer)
+    c101.color = redPlayer.color
+    redTroops = 20
+    blueTroops = 20
     canAddRed = True
     canAddBlue = True
 
@@ -391,7 +392,7 @@ def egypt_screen(screen):
         screen.fill(BLUE)
         screen.blit(image, (75, 50))
         for button in buttons:
-            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,c101)
+            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,c101,redPlayer,bluePlayer)
             button.update_text(button.country.label, button.country.color)
             if ui_action is not None:
                 return ui_action

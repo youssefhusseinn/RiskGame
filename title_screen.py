@@ -45,7 +45,7 @@ def title_screen(screen):
         screen.fill(BLUE)
 
         for button in buttons:
-            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,None)
+            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,None,None,None)
             if ui_action is not None:
                 return ui_action
             button.draw(screen)

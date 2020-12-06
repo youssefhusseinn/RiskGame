@@ -75,7 +75,7 @@ class UIElement(Sprite):
     def rect(self):
             return self.rects[1] if self.mouse_over else self.rects[0]
 
-    def update(self, mouse_pos,mouse_up,c101):
+    def update(self, mouse_pos,mouse_up,c101,redPlayer,bluePlayer):
             stateus =USGame()
             stateeg=EGGame()
             if self.rect.collidepoint(mouse_pos):
@@ -83,19 +83,33 @@ class UIElement(Sprite):
                 if mouse_up:
                     my_string = str(self.id)
                     if my_string.find("us") == False:
-                        flag= stateus.addelements(self.country)
+                        flag= stateus.addelements(self.country,c101,redPlayer,bluePlayer)
                         if flag == True:
                             if(c101.label=="RED PLAYER"):
                                 c101.label="BLUE PLAYER"
+                                c101.color=bluePlayer.color
+                                c101.setOwner(bluePlayer)
                             else:
                                 c101.label="RED PLAYER"
+                                c101.color=redPlayer.color
+                                c101.setOwner(redPlayer)
+
+
                     if my_string.find("eg") == False:
-                        flag= stateeg.addelements(self.country)
+                        flag= stateeg.addelements(self.country,c101,redPlayer,bluePlayer)
                         if flag == True:
                             if(c101.label=="RED PLAYER"):
                                 c101.label="BLUE PLAYER"
+                                c101.color=bluePlayer.color
+                                c101.setOwner(bluePlayer)
+
+
                             else:
                                 c101.label="RED PLAYER"
+                                c101.color=redPlayer.color
+                                c101.setOwner(redPlayer)
+
+
                     return self.action
             else:
                 self.mouse_over = False
