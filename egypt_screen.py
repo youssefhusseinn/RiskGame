@@ -10,6 +10,8 @@ from EGGame import *
 import player
 from player import *
 
+import random
+
 BLUE = (9, 5, 101)
 WHITE = (255, 255, 255, 0)
 BLACK = (0, 0, 0)
@@ -20,6 +22,10 @@ DARKBLUE = (2, 8, 126)
 def egypt_screen(screen):
     element = UIelement
     c0 = Country("Return to main menu", "Return to main menu")
+    element= UIelement
+
+
+    c0=Country("Return to main menu","Return to main menu")
     c1 = Country(1, "eg1")
     c2 = Country(2, "eg2")
     c3 = Country(3, "eg3")
@@ -42,6 +48,7 @@ def egypt_screen(screen):
     c20 = Country(20, "eg20")
     c21 = Country(21, "eg21")
     c22 = Country(22, "eg22")
+    
 
     c1.neighbors = {c2, c3, c7, c8}
     c2.neighbors = {c1, c3, c4, c19, c20, c21, c22}
