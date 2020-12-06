@@ -33,7 +33,7 @@ def us_screen(screen):
     state = USGame()
     c100 = Country("TURN:", "TURN:")
     c101=Country("RED PLAYER","RED PLAYER")
-
+    c103=Country("+","+")
     c0 = Country("Return to main menu", "Return to main menu")
     c1 = Country("us1", "us1")
     c2 = Country("us2", "us2")
@@ -120,6 +120,8 @@ def us_screen(screen):
     c101.setOwner(redPlayer)
     c101.color=redPlayer.color
 
+
+
     redTroops = 20
     blueTroops = 20
 
@@ -156,7 +158,11 @@ def us_screen(screen):
             country.increaseNumOfTroops(1)
             if blueTroops == 0:
                 canAddBlue = False
-
+    redPlayer.setbonustroops()
+    bluePlayer.setbonustroops()
+    c102=Country("BONUS",str (redPlayer.bonustroops))
+    c102.color = redPlayer.color
+    c102.setOwner(redPlayer)
     return_btn = element.UIElement(
         center_position=(250, 700),
         font_size=30,
@@ -179,6 +185,17 @@ def us_screen(screen):
         country=c1,
         action=None
     )
+
+    add_button_1 = element.UIElement(
+        center_position=(230, 70),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c1,
+        id="b1",
+        action=None
+    )
     country_us_2 = element.UIElement(
         center_position=(150, 150),
         font_size=50,
@@ -187,6 +204,17 @@ def us_screen(screen):
         text=c2.label,
         id="us2",
         country=c2,
+        action=None
+    )
+
+    add_button_2 = element.UIElement(
+        center_position=(170, 170),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c2,
+        id="b1",
         action=None
     )
     country_us_3 = element.UIElement(
@@ -200,6 +228,17 @@ def us_screen(screen):
         action=None
 
     )
+
+    add_button_3 = element.UIElement(
+        center_position=(130, 320),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c3,
+        id="b1",
+        action=None
+    )
     country_us_4 = element.UIElement(
         center_position=(270, 170),
         font_size=50,
@@ -208,6 +247,17 @@ def us_screen(screen):
         text=c4.label,
         country=c4,
         id="us4",
+        action=None
+    )
+
+    add_button_4 = element.UIElement(
+        center_position=(290, 190),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c4,
+        id="b1",
         action=None
     )
     country_us_5 = element.UIElement(
@@ -220,6 +270,17 @@ def us_screen(screen):
         id="us5",
         action=None
     )
+
+    add_button_5 = element.UIElement(
+        center_position=(220, 315),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c5,
+        id="b1",
+        action=None
+    )
     country_us_6 = element.UIElement(
         center_position=(380, 100),
         font_size=50,
@@ -228,6 +289,16 @@ def us_screen(screen):
         text=c6.label,
         country=c6,
         id="us6",
+        action=None
+    )
+    add_button_6 = element.UIElement(
+        center_position=(400, 120),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c6,
+        id="b1",
         action=None
     )
     country_us_7 = element.UIElement(
@@ -240,6 +311,16 @@ def us_screen(screen):
         id="us7",
         action=None
     )
+    add_button_7 = element.UIElement(
+        center_position=(425, 240),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c7,
+        id="b1",
+        action=None
+    )
     country_us_8 = element.UIElement(
         center_position=(315, 310),
         font_size=50,
@@ -248,6 +329,16 @@ def us_screen(screen):
         text=c8.label,
         country=c8,
         id="us8",
+        action=None
+    )
+    add_button_8 = element.UIElement(
+        center_position=(330, 330),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c8,
+        id="b1",
         action=None
     )
     country_us_9 = element.UIElement(
@@ -260,6 +351,16 @@ def us_screen(screen):
         id="us9",
         action=None
     )
+    add_button_9 = element.UIElement(
+        center_position=(315, 500),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c9,
+        id="b1",
+        action=None
+    )
     country_us_10 = element.UIElement(
         center_position=(565, 110),
         font_size=50,
@@ -268,6 +369,16 @@ def us_screen(screen):
         text=c10.label,
         country=c10,
         id="us10",
+        action=None
+    )
+    add_button_10 = element.UIElement(
+        center_position=(585, 130),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c10,
+        id="b1",
         action=None
     )
     country_us_11 = element.UIElement(
@@ -280,6 +391,16 @@ def us_screen(screen):
         id="us11",
         action=None
     )
+    add_button_11 = element.UIElement(
+        center_position=(585, 220),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c11,
+        id="b1",
+        action=None
+    )
     country_us_12 = element.UIElement(
         center_position=(565, 280),
         font_size=50,
@@ -288,6 +409,16 @@ def us_screen(screen):
         text=c12.label,
         country=c12,
         id="us12",
+        action=None
+    )
+    add_button_12 = element.UIElement(
+        center_position=(585, 300),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c12,
+        id="b1",
         action=None
     )
     country_us_13 = element.UIElement(
@@ -300,6 +431,16 @@ def us_screen(screen):
         id="us13",
         action=None
     )
+    add_button_13 = element.UIElement(
+        center_position=(470, 360),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c13,
+        id="b1",
+        action=None
+    )
     country_us_14 = element.UIElement(
         center_position=(430, 470),
         font_size=50,
@@ -308,6 +449,16 @@ def us_screen(screen):
         text=c14.label,
         country=c14,
         id="us14",
+        action=None
+    )
+    add_button_14 = element.UIElement(
+        center_position=(450, 490),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c14,
+        id="b1",
         action=None
     )
     country_us_15 = element.UIElement(
@@ -320,6 +471,16 @@ def us_screen(screen):
         id="us15",
         action=None
     )
+    add_button_15 = element.UIElement(
+        center_position=(620, 390),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c15,
+        id="b1",
+        action=None
+    )
     country_us_16 = element.UIElement(
         center_position=(620, 450),
         font_size=50,
@@ -328,6 +489,16 @@ def us_screen(screen):
         text=c16.label,
         country=c16,
         id="us16",
+        action=None
+    )
+    add_button_16= element.UIElement(
+        center_position=(640, 470),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c16,
+        id="b1",
         action=None
     )
     country_us_17 = element.UIElement(
@@ -340,6 +511,16 @@ def us_screen(screen):
         id="us17",
         action=None
     )
+    add_button_17 = element.UIElement(
+        center_position=(620, 600),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c17,
+        id="b1",
+        action=None
+    )
     country_us_18 = element.UIElement(
         center_position=(700, 170),
         font_size=50,
@@ -348,6 +529,16 @@ def us_screen(screen):
         text=c18.label,
         country=c18,
         id="us18",
+        action=None
+    )
+    add_button_18 = element.UIElement(
+        center_position=(720, 190),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c18,
+        id="b1",
         action=None
     )
     country_us_19 = element.UIElement(
@@ -360,6 +551,16 @@ def us_screen(screen):
         id="us19",
         action=None
     )
+    add_button_19 = element.UIElement(
+        center_position=(740, 290),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c19,
+        id="b1",
+        action=None
+    )
     country_us_20 = element.UIElement(
         center_position=(730, 380),
         font_size=50,
@@ -368,6 +569,16 @@ def us_screen(screen):
         text=c20.label,
         country=c20,
         id="us20",
+        action=None
+    )
+    add_button_20 = element.UIElement(
+        center_position=(750, 400),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c20,
+        id="b1",
         action=None
     )
     country_us_21 = element.UIElement(
@@ -379,6 +590,16 @@ def us_screen(screen):
         country=c21, id="us21",
         action=None
     )
+    add_button_21 = element.UIElement(
+        center_position=(770, 500),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c21,
+        id="b1",
+        action=None
+    )
     country_us_22 = element.UIElement(
         center_position=(750, 570),
         font_size=50,
@@ -388,7 +609,16 @@ def us_screen(screen):
         country=c22, id="us22",
         action=None
     )
-
+    add_button_22 = element.UIElement(
+        center_position=(770, 590),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c22,
+        id="b1",
+        action=None
+    )
     country_us_23 = element.UIElement(
         center_position=(800, 200),
         font_size=50,
@@ -396,6 +626,16 @@ def us_screen(screen):
         text_rgb=c23.color,
         text=c23.label,
         country=c23, id="us23",
+        action=None
+    )
+    add_button_23 = element.UIElement(
+        center_position=(820, 220),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c23,
+        id="b1",
         action=None
     )
     country_us_24 = element.UIElement(
@@ -408,6 +648,16 @@ def us_screen(screen):
         id="us24",
         action=None
     )
+    add_button_24 = element.UIElement(
+        center_position=(920, 190),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c24,
+        id="b1",
+        action=None
+    )
     country_us_25 = element.UIElement(
         center_position=(800, 320),
         font_size=50,
@@ -416,6 +666,16 @@ def us_screen(screen):
         text=c25.label,
         country=c25,
         id="us25",
+        action=None
+    )
+    add_button_25 = element.UIElement(
+        center_position=(820, 340),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c25,
+        id="b1",
         action=None
     )
     country_us_26 = element.UIElement(
@@ -428,6 +688,16 @@ def us_screen(screen):
         id="us26",
         action=None
     )
+    add_button_26 = element.UIElement(
+        center_position=(900, 300),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c26,
+        id="b1",
+        action=None
+    )
     country_us_27 = element.UIElement(
         center_position=(950, 310),
         font_size=50,
@@ -436,6 +706,16 @@ def us_screen(screen):
         text=c27.label,
         country=c27,
         id="us27",
+        action=None
+    )
+    add_button_27 = element.UIElement(
+        center_position=(970, 330),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c27,
+        id="b1",
         action=None
     )
     country_us_28 = element.UIElement(
@@ -448,6 +728,16 @@ def us_screen(screen):
         id="us28",
         action=None
     )
+    add_button_28 = element.UIElement(
+        center_position=(1070, 370),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c28,
+        id="b1",
+        action=None
+    )
     country_us_29 = element.UIElement(
         center_position=(1050, 270),
         font_size=50,
@@ -456,6 +746,16 @@ def us_screen(screen):
         text=c29.label,
         country=c29,
         id="us29",
+        action=None
+    )
+    add_button_29 = element.UIElement(
+        center_position=(1070, 290),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c29,
+        id="b1",
         action=None
     )
     country_us_30 = element.UIElement(
@@ -468,6 +768,16 @@ def us_screen(screen):
         id="us30",
         action=None
     )
+    add_button_30 = element.UIElement(
+        center_position=(1120, 220),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c30,
+        id="b1",
+        action=None
+    )
     country_us_31 = element.UIElement(
         center_position=(1050, 425),
         font_size=50,
@@ -476,6 +786,16 @@ def us_screen(screen):
         text=c31.label,
         country=c31,
         id="us31",
+        action=None
+    )
+    add_button_31 = element.UIElement(
+        center_position=(1070, 445),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c31,
+        id="b1",
         action=None
     )
     country_us_32 = element.UIElement(
@@ -488,6 +808,16 @@ def us_screen(screen):
         id="us32",
         action=None
     )
+    add_button_32 = element.UIElement(
+        center_position=(920, 465),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c32,
+        id="b1",
+        action=None
+    )
     country_us_33 = element.UIElement(
         center_position=(900, 530),
         font_size=50,
@@ -496,6 +826,16 @@ def us_screen(screen):
         text=c33.label,
         country=c33,
         id="us33",
+        action=None
+    )
+    add_button_33 = element.UIElement(
+        center_position=(920, 550),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c33,
+        id="b1",
         action=None
     )
     country_us_34 = element.UIElement(
@@ -508,6 +848,16 @@ def us_screen(screen):
         id="us34",
         action=None
     )
+    add_button_34 = element.UIElement(
+        center_position=(840, 550),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c34,
+        id="b1",
+        action=None
+    )
     country_us_35 = element.UIElement(
         center_position=(980, 530),
         font_size=50,
@@ -516,6 +866,16 @@ def us_screen(screen):
         text=c35.label,
         country=c35,
         id="us35",
+        action=None
+    )
+    add_button_35 = element.UIElement(
+        center_position=(1000, 550),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c35,
+        id="b1",
         action=None
     )
     country_us_36 = element.UIElement(
@@ -528,6 +888,16 @@ def us_screen(screen):
         id="us36",
         action=None
     )
+    add_button_36 = element.UIElement(
+        center_position=(1055, 510),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c36,
+        id="b1",
+        action=None
+    )
     country_us_37 = element.UIElement(
         center_position=(1035, 650),
         font_size=50,
@@ -536,6 +906,16 @@ def us_screen(screen):
         text=c37.label,
         country=c37,
         id="us37",
+        action=None
+    )
+    add_button_37= element.UIElement(
+        center_position=(1055, 670),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=BLACK,
+        text="+",
+        country=c37,
+        id="b1",
         action=None
     )
     turn_button = element.UIElement(
@@ -558,6 +938,16 @@ def us_screen(screen):
         id="playerid",
         action=None
     )
+    bonus_button = element.UIElement(
+        center_position=(1260, 100),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=c102.color,
+        text=c102.label,
+        country=c102,
+        id="bonusid",
+        action=None
+    )
     usmapimage = pygame.image.load("assets/USMAP.png")
     buttons = [country_us_1, country_us_2, country_us_3,
                country_us_4, country_us_5, country_us_6,
@@ -571,8 +961,14 @@ def us_screen(screen):
                country_us_28, country_us_29, country_us_30,
                country_us_31, country_us_32, country_us_33,
                country_us_34, country_us_35, country_us_36,
-               country_us_37, return_btn,turn_button,player_button]
-
+               country_us_37, return_btn,turn_button,player_button,bonus_button]
+    bonus_buttons=[add_button_1,add_button_2,add_button_3,add_button_4,add_button_5,
+                   add_button_6,add_button_7,add_button_8,add_button_9,add_button_10,
+                   add_button_11,add_button_12,add_button_13,add_button_14,add_button_15
+                   ,add_button_16,add_button_17,add_button_18,add_button_19,add_button_20,
+                   add_button_21,add_button_22,add_button_23,add_button_24,add_button_25
+                   ,add_button_26,add_button_27,add_button_28,add_button_29,add_button_30,
+                   add_button_31,add_button_32,add_button_33,add_button_34,add_button_35,add_button_36,add_button_37]
     while True:
         mouse_up = False
         for event in pygame.event.get():
@@ -580,10 +976,19 @@ def us_screen(screen):
                 mouse_up = True
         screen.fill(BLUE)
         screen.blit(usmapimage, (50, 0))
+        for bonus in bonus_buttons:
+            ui_actionbonus = bonus.update_bonus(pygame.mouse.get_pos(), mouse_up, bonus.country, c102,c101,redPlayer,bluePlayer)
+            #bonus.update_text(bonus.country.label, bonus.country.color)
+            if ui_actionbonus is not None:
+                return ui_actionbonus
+            bonus.draw(screen)
+
+
         for button in buttons:
-            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,c101,redPlayer,bluePlayer)
+            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,c102,c101,redPlayer,bluePlayer)
             button.update_text(button.country.label, button.country.color)
             if ui_action is not None:
                 return ui_action
             button.draw(screen)
+
         pygame.display.flip()

@@ -27,3 +27,5 @@ class Country:
 
     def decreaseNumOfTroops(self,number):
         self.troops=self.troops-number
+    def setlabel(self,str):
+        self.label=str

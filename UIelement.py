@@ -5,6 +5,8 @@ import USGame
 from EGGame import EGGame
 from USGame import *
 import main
+import math
+
 from main import *
 import USGame
 from USGame import *
@@ -75,7 +77,7 @@ class UIElement(Sprite):
     def rect(self):
             return self.rects[1] if self.mouse_over else self.rects[0]
 
-    def update(self, mouse_pos,mouse_up,c101,redPlayer,bluePlayer):
+    def update(self, mouse_pos,mouse_up,c102,c101,redPlayer,bluePlayer):
             stateus =USGame()
             stateeg=EGGame()
             if self.rect.collidepoint(mouse_pos):
@@ -83,20 +85,32 @@ class UIElement(Sprite):
                 if mouse_up:
                     my_string = str(self.id)
                     if my_string.find("us") == False:
-                        flag= stateus.addelements(self.country,c101,redPlayer,bluePlayer)
+                        flag= stateus.addelements(self.country,c102,c101,redPlayer,bluePlayer)
                         if flag == True:
                             if(c101.label=="RED PLAYER"):
                                 c101.label="BLUE PLAYER"
                                 c101.color=bluePlayer.color
                                 c101.setOwner(bluePlayer)
+                                c102.setlabel(str (bluePlayer.bonustroops))
+                                c102.color = bluePlayer.color
+                                c102.setOwner(bluePlayer)
+                                c102.setNumOfTroops(bluePlayer.bonustroops)
+                                redPlayer.setbonustroops()
+                                bluePlayer.setbonustroops()
+
                             else:
                                 c101.label="RED PLAYER"
                                 c101.color=redPlayer.color
                                 c101.setOwner(redPlayer)
-
+                                c102.setlabel(str(redPlayer.bonustroops))
+                                c102.color = redPlayer.color
+                                c102.setOwner(redPlayer)
+                                c102.setNumOfTroops(redPlayer.bonustroops)
+                                redPlayer.setbonustroops()
+                                bluePlayer.setbonustroops()
 
                     if my_string.find("eg") == False:
-                        flag= stateeg.addelements(self.country,c101,redPlayer,bluePlayer)
+                        flag= stateeg.addelements(self.country,c102,c101,redPlayer,bluePlayer)
                         if flag == True:
                             if(c101.label=="RED PLAYER"):
                                 c101.label="BLUE PLAYER"
@@ -113,12 +127,23 @@ class UIElement(Sprite):
                     return self.action
             else:
                 self.mouse_over = False
+    def update_bonus(self, mouse_pos,mouse_up,country,c102,c101,redPlayer,bluePlayer):
+            stateus =USGame()
+            stateeg=EGGame()
+            if self.rect.collidepoint(mouse_pos):
+                self.mouse_over = True
+                if mouse_up:
+                    my_string = str(self.id)
+                    stateus.addbonustroops(self.country,c102,c101,redPlayer,bluePlayer)
+
+                    return self.action
+            else:
+                self.mouse_over = False
 
     def draw(self, surface):
         """ Draws element onto a surface """
         surface.blit(self.image, self.rect)
 
-  ## dol 2 function set_text , update_text wa7da bt t8yir el text bs wa wa7da bt8yr text wa loon
 
     def set_text(self, text):
         default_image = create_surface_with_text(
