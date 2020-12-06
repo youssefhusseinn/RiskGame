@@ -77,7 +77,6 @@ def egypt_screen(screen):
     bluePlayer = player(DARKBLUE)
     redTroops = 20
     blueTroops = 20
-
     canAddRed = True
     canAddBlue = True
 

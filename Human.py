@@ -1,17 +1,24 @@
 from Agent import *
+import Country
+from Country import *
+
+class Human:
 
 
-class Human(Agent):
+    def attacking(self,country0,country1):
 
-    def takeTurn(self):
-        # 1. insert troops into your countries (GUI)
-        # 2. choose country to attack from (GUI)
-        # 3. then choose country to be attacked (GUI)
-        pass
+        if((country0.troops-1 >= country1.troops ) and (country0.owner != country1.owner) and (country1 in country0.neighbors)):
+            country1.setNumOfTroops(country0.troops-1)
+            country1.setOwner(country0.owner)
+            country0.setNumOfTroops(1)
+            return True
+        else:
+            print("you can not do this attack")
+            return False
 
-    def attack(self):
-        pass
 
-    def chooseCountryToAddTroops(self) -> Country:
-        # choose country from GUI
-        pass
+
+
+
+
+

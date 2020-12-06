@@ -1,7 +1,8 @@
 import random
 
 from Country import *
-
+import Human
+from Human import *
 DARKRED=(229,12,22)
 DARKBLUE=(2,8,126)
 
@@ -12,44 +13,15 @@ class USGame():
     def __init__(self):
        ## self.agents = [agent1, agent2]
        """"
-
-    def splitCountriesFixed(self):
-        for i in range(0, 19):
-            self.agents[0].countries[self.countries[i]] = 1
-        for i in range(19, 37):
-            self.agents[1].countries[self.countries[i]] = 1
-        print(self.agents[0].countries)
-        print()
-        print(self.agents[1].countries)
-
-    def splitCountriesRandomly(self):
-        agentcount = [0, 0]
-        for country in self.countries:
-            if agentcount[0] <= 19 and agentcount[1] < 19:
-                x = random.choice(range(0, 2))
-                self.agents[x].countries.add(country)
-                agentcount[x] += 1
-            elif agentcount[0] < 19:
-                self.agents[0].countries.add(country)
-                agentcount[0] += 1
-            else:
-                self.agents[1].countries.add(country)
-                agentcount[1] += 1
-
-
 """
-    def attacking(self):
-        self.attack[0].label="10"
-        self.attack[0].color=DARKRED
-        self.attack[1].label="5"
-        self.attack[1].color=DARKBLUE
 
 
     def addelements(self,country):
+        human= Human()
         if country not in self.attack:
             self.attack.append(country)
         if len(self.attack) ==2:
-            self.attacking()
+            human.attacking(self.attack[0],self.attack[1])
         if len(self.attack)>=2:
             self.attack.clear()
 

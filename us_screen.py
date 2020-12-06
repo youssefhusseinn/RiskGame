@@ -28,10 +28,12 @@ def assignTroopsRandomly(redPlayer, bluePlayer, countries):
 
 
 def us_screen(screen):
+
     element = UIelement
     state = USGame()
-    sprite = UISprite
-    text = "0"
+    c100 = Country("TURN:", "TURN:")
+    c101=Country("RED PLAYER","RED PLAYER")
+
     c0 = Country("Return to main menu", "Return to main menu")
     c1 = Country("us1", "us1")
     c2 = Country("us2", "us2")
@@ -533,6 +535,26 @@ def us_screen(screen):
         id="us37",
         action=None
     )
+    turn_button = element.UIElement(
+        center_position=(1150, 50),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=WHITE,
+        text="TURN :",
+        country=c100,
+        id="turnid",
+        action=None
+    )
+    player_button = element.UIElement(
+        center_position=(1260, 50),
+        font_size=20,
+        bg_rgb=WHITE,
+        text_rgb=WHITE,
+        text="TURN :",
+        country=c101,
+        id="playerid",
+        action=None
+    )
     usmapimage = pygame.image.load("assets/USMAP.png")
     buttons = [country_us_1, country_us_2, country_us_3,
                country_us_4, country_us_5, country_us_6,
@@ -546,7 +568,7 @@ def us_screen(screen):
                country_us_28, country_us_29, country_us_30,
                country_us_31, country_us_32, country_us_33,
                country_us_34, country_us_35, country_us_36,
-               country_us_37, return_btn]
+               country_us_37, return_btn,turn_button,player_button]
 
     while True:
         mouse_up = False

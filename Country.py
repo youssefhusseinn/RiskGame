@@ -2,7 +2,6 @@ BLACK = (0, 0, 0)
 import player
 
 class Country:
-    owner=None
     def __init__(self, id,label):
         #self.agent = None
         self.label = label
@@ -10,8 +9,8 @@ class Country:
         self.id = id
         self.color=BLACK
         self.troops=0
+        self.owner=None
 
-        # owner
 
     def getNumberOfTroops(self) -> int:
         return self.agent.countries[self]

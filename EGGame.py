@@ -1,6 +1,8 @@
 import random
 
 from Country import *
+from Human import Human
+
 DARKRED=(229,12,22)
 DARKBLUE=(2,8,126)
 
@@ -46,11 +48,11 @@ class EGGame():
 
 
     def addelements(self, country):
+        human = Human()
         if country not in self.attack:
             self.attack.append(country)
-        else:
-            return    
         if len(self.attack) == 2:
-            self.attacking()
+            flag=human.attacking(self.attack[0], self.attack[1])
+
         if len(self.attack) >= 2:
             self.attack.clear()
