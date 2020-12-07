@@ -13,7 +13,8 @@ import USGame
 from USGame import *
 import player
 from player import *
-
+import input_box
+from input_box import *
 BLUE = (9, 5, 101)
 WHITE = (255, 255, 255, 0)
 BLACK = (0, 0, 0)
@@ -30,10 +31,16 @@ def assignTroopsRandomly(redPlayer, bluePlayer, countries):
 def us_screen(screen):
 
     element = UIelement
-    state = USGame()
+    state = USGame(None)
     c100 = Country("TURN:", "TURN:")
     c101=Country("RED PLAYER","RED PLAYER")
     c103=Country("+","+")
+    inputbox = InputBox(1300, 150,20, 32)
+    input_boxes = [inputbox]
+    myfont = pygame.font.SysFont("monospace", 15)
+    label = myfont.render("AMOUNT OF TROOPS", 1, BLACK)
+
+    done = False
     c0 = Country("Return to main menu", "Return to main menu")
     c1 = Country("us1", "us1")
     c2 = Country("us2", "us2")
@@ -970,12 +977,30 @@ def us_screen(screen):
                    ,add_button_26,add_button_27,add_button_28,add_button_29,add_button_30,
                    add_button_31,add_button_32,add_button_33,add_button_34,add_button_35,add_button_36,add_button_37]
     while True:
+
+
         mouse_up = False
         for event in pygame.event.get():
+            for box in input_boxes:
+                text=box.handle_event(event)
+                if text != None :
+                     state.setnumoftroops(text)
+
+
+                print("wasl")
+                print(state.numoftroops)
+
+            for box in input_boxes:
+                box.update()
+
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
+
+
         screen.fill(BLUE)
         screen.blit(usmapimage, (50, 0))
+        screen.blit(label, (1150, 159))
+
         for bonus in bonus_buttons:
             ui_actionbonus = bonus.update_bonus(pygame.mouse.get_pos(), mouse_up, bonus.country, c102,c101,redPlayer,bluePlayer)
             #bonus.update_text(bonus.country.label, bonus.country.color)
@@ -985,10 +1010,11 @@ def us_screen(screen):
 
 
         for button in buttons:
-            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,c102,c101,redPlayer,bluePlayer)
+            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,c102,c101,redPlayer,bluePlayer,state.numoftroops)
             button.update_text(button.country.label, button.country.color)
             if ui_action is not None:
                 return ui_action
             button.draw(screen)
-
+        for box in input_boxes:
+            box.draw(screen)
         pygame.display.flip()

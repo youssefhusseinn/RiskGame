@@ -77,15 +77,15 @@ class UIElement(Sprite):
     def rect(self):
             return self.rects[1] if self.mouse_over else self.rects[0]
 
-    def update(self, mouse_pos,mouse_up,c102,c101,redPlayer,bluePlayer):
-            stateus =USGame()
+    def update(self, mouse_pos,mouse_up,c102,c101,redPlayer,bluePlayer,num):
+            stateus =USGame(None)
             stateeg=EGGame()
             if self.rect.collidepoint(mouse_pos):
                 self.mouse_over = True
                 if mouse_up:
                     my_string = str(self.id)
                     if my_string.find("us") == False:
-                        flag= stateus.addelements(self.country,c102,c101,redPlayer,bluePlayer)
+                        flag= stateus.addelements(self.country,c102,c101,redPlayer,bluePlayer,num)
                         if flag == True:
                             if(c101.label=="RED PLAYER"):
                                 c101.label="BLUE PLAYER"
@@ -128,7 +128,7 @@ class UIElement(Sprite):
             else:
                 self.mouse_over = False
     def update_bonus(self, mouse_pos,mouse_up,country,c102,c101,redPlayer,bluePlayer):
-            stateus =USGame()
+            stateus =USGame(None)
             stateeg=EGGame()
             if self.rect.collidepoint(mouse_pos):
                 self.mouse_over = True

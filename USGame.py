@@ -10,10 +10,11 @@ class USGame():
     attack =[]
 
 
-    def __init__(self):
-       ## self.agents = [agent1, agent2]
-       """"
-"""
+    def __init__(self,num):
+        self.numoftroops=num
+
+    def setnumoftroops(self,num):
+        self.numoftroops=num
 
     def addbonustroops(self,country,c102,c101,redPlayer,bluePlayer):
         if c101.label== "RED PLAYER" and country.owner == redPlayer and redPlayer.bonustroops > 0 :
@@ -28,14 +29,18 @@ class USGame():
 
 
 
-    def addelements(self,country,c102,c101,redPlayer,bluePlayer):
+    def addelements(self,country,c102,c101,redPlayer,bluePlayer,num):
         human= Human()
         flag1=False
         if country not in self.attack:
             self.attack.append(country)
         if len(self.attack) ==2:
             if (redPlayer.bonustroops==0 and c101.label=="RED PLAYER") or (bluePlayer.bonustroops==0 and c101.label=="BLUE PLAYER"):
-                 flag=human.attacking(self.attack[0],self.attack[1],c101,redPlayer,bluePlayer)
+                 print("wasllllll")
+                 print(num)
+                 flag=human.attacking(self.attack[0],self.attack[1],c101,redPlayer,bluePlayer,num)
+
+
                  if flag == True:
                      if (c101.label == "RED PLAYER"):
                        c102.setlabel(str(bluePlayer.bonustroops))
