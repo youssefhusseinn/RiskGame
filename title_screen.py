@@ -50,5 +50,7 @@ def title_screen(screen):
                 return ui_action
             button.draw(screen)
         screen.blit(titleimage, (350, 50))
+        MANUAL_CURSOR = pygame.image.load('assets/mouse.png').convert_alpha()
+        screen.blit(MANUAL_CURSOR, (pygame.mouse.get_pos()))
 
         pygame.display.flip()

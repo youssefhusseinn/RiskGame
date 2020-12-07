@@ -1017,4 +1017,6 @@ def us_screen(screen):
             button.draw(screen)
         for box in input_boxes:
             box.draw(screen)
+        MANUAL_CURSOR = pygame.image.load('assets/mouse.png').convert_alpha()
+        screen.blit(MANUAL_CURSOR, (pygame.mouse.get_pos()))
         pygame.display.flip()

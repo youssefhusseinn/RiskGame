@@ -27,9 +27,14 @@ def main():
 
     game_state = GameState.TITLE
     running = True
+    pygame.mouse.set_visible(False)  # hide the cursor
+    MANUAL_CURSOR = pygame.image.load('assets/mouse.png').convert_alpha()
+    screen.blit(MANUAL_CURSOR, (pygame.mouse.get_pos()))
+
     while running:
         #usgame = USGame(Agent(), Agent())
         #usgame.splitCountriesFixed()
+
         if game_state == GameState.TITLE:
             game_state = title_screen(screen)
 

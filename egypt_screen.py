@@ -398,4 +398,5 @@ def egypt_screen(screen):
             if ui_action is not None:
                 return ui_action
             button.draw(screen)
+
         pygame.display.flip()

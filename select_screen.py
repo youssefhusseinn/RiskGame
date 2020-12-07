@@ -69,6 +69,8 @@ def select_screen(screen):
         screen.blit(egyptmapimage, (250, 200))
         screen.blit(usmapimage, (800, 230))
         screen.blit(image4, (400, 0))
+        MANUAL_CURSOR = pygame.image.load('assets/mouse.png').convert_alpha()
+        screen.blit(MANUAL_CURSOR, (pygame.mouse.get_pos()))
 
 
         pygame.display.flip()
