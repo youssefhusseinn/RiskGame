@@ -8,7 +8,7 @@ class AgressiveAgent(Agent):
     def takeTurn(self):
         country = self.chooseCountryToAddTroops()
         amount = self.calcBonusTroops()
-        self.countries[country] += amount
+        country.addTroops(amount)
         self.attack()
 
     def chooseCountryToAddTroops(self) -> Country:

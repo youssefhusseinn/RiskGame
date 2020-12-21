@@ -6,7 +6,7 @@ class PassiveAgent(Agent):
     def takeTurn(self):
         country = self.chooseCountryToAddTroops()
         amount = self.calcBonusTroops()
-        self.countries[country] += amount
+        country.addTroops(amount)
 
     # choose the country with minimum troops
     def chooseCountryToAddTroops(self) -> Country:
