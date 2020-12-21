@@ -1,15 +1,15 @@
 import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
-import USGame
+import US_STATE
 from EGGame import EGGame
-from USGame import *
+from US_STATE import *
 import main
 import math
 
 from main import *
-import USGame
-from USGame import *
+import US_STATE
+from US_STATE import *
 import Country
 from Country import *
 BLUE = (9, 5, 101)
@@ -74,7 +74,7 @@ class UIElement(Sprite):
     def rect(self):
             return self.rects[1] if self.mouse_over else self.rects[0]
     def update(self, mouse_pos,mouse_up,c102,c101,redPlayer,bluePlayer,num):
-            stateus =USGame(None)
+            stateus =US_STATE(None)
             stateeg=EGGame()
             if self.rect.collidepoint(mouse_pos):
                 self.mouse_over = True
@@ -124,7 +124,7 @@ class UIElement(Sprite):
             else:
                 self.mouse_over = False
     def update_bonus(self, mouse_pos,mouse_up,country,c102,c101,redPlayer,bluePlayer):
-            stateus =USGame(None)
+            stateus =US_STATE(None)
             stateeg=EGGame()
             if self.rect.collidepoint(mouse_pos):
                 self.mouse_over = True

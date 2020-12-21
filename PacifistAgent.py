@@ -45,4 +45,3 @@ class PacifistAgent(Agent):
                         attacker = country
                         defender = neighbor
         return attacker, defender
-

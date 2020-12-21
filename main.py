@@ -5,7 +5,7 @@ from pygame.rect import Rect
 from enum import Enum
 import UIelement
 import title_screen
-from USGame import *
+from US_STATE import *
 from Agent import *
 from title_screen import *
 import us_screen

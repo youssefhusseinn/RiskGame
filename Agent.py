@@ -20,6 +20,7 @@ class Agent:
 
     def attack(self):
         # depends on each agent.. every agent has his own attacking algorithm
+
         pass
 
     def addTroops(self, amount):
