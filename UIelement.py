@@ -67,16 +67,12 @@ class UIElement(Sprite):
 
 
         # properties that vary the image and its rect when the mouse is over the element
-
-
     @property
     def image(self):
         return self.images[1] if self.mouse_over else self.images[0]
-
     @property
     def rect(self):
             return self.rects[1] if self.mouse_over else self.rects[0]
-
     def update(self, mouse_pos,mouse_up,c102,c101,redPlayer,bluePlayer,num):
             stateus =USGame(None)
             stateeg=EGGame()
@@ -139,12 +135,9 @@ class UIElement(Sprite):
                     return self.action
             else:
                 self.mouse_over = False
-
     def draw(self, surface):
         """ Draws element onto a surface """
         surface.blit(self.image, self.rect)
-
-
     def set_text(self, text):
         default_image = create_surface_with_text(
             text=text, font_size=self.font_size, text_rgb=self.text_rgb, bg_rgb=self.bg_rgb
