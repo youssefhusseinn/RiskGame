@@ -1,13 +1,19 @@
 from Country import *
-
+BLUE = (9, 5, 101)
+WHITE = (255, 255, 255, 0)
+BLACK = (0, 0, 0)
+DARKRED = (229, 12, 22)
+DARKBLUE = (2, 8, 126)
 
 class Agent:
 
-    def __init__(self):
+    def __init__(self,type,color):
         self.countries = []
-        #self.color = BLACK
+        self.color = color
+        self.type=type
 
-
+    def addCountry(self,country):
+        self.countries.append(country)
 
     def takeTurn(self):
         amount = self.calcBonusTroops()

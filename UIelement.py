@@ -2,7 +2,6 @@ import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
 import US_STATE
-from EGGame import EGGame
 from US_STATE import *
 import main
 import math
@@ -73,59 +72,17 @@ class UIElement(Sprite):
     @property
     def rect(self):
             return self.rects[1] if self.mouse_over else self.rects[0]
-    def update(self, mouse_pos,mouse_up,c102,c101,redPlayer,bluePlayer,num):
-            stateus =US_STATE(None)
-            stateeg=EGGame()
+    def update(self, mouse_pos,mouse_up):
+
             if self.rect.collidepoint(mouse_pos):
                 self.mouse_over = True
                 if mouse_up:
-                    my_string = str(self.id)
-                    if my_string.find("us") == False:
-                        flag= stateus.addelements(self.country,c102,c101,redPlayer,bluePlayer,num)
-                        if flag == True:
-                            if(c101.label=="RED PLAYER"):
-                                c101.label="BLUE PLAYER"
-                                c101.color=bluePlayer.color
-                                c101.setOwner(bluePlayer)
-                                c102.setlabel(str (bluePlayer.bonustroops))
-                                c102.color = bluePlayer.color
-                                c102.setOwner(bluePlayer)
-                                c102.setNumOfTroops(bluePlayer.bonustroops)
-                                redPlayer.setbonustroops()
-                                bluePlayer.setbonustroops()
-
-                            else:
-                                c101.label="RED PLAYER"
-                                c101.color=redPlayer.color
-                                c101.setOwner(redPlayer)
-                                c102.setlabel(str(redPlayer.bonustroops))
-                                c102.color = redPlayer.color
-                                c102.setOwner(redPlayer)
-                                c102.setNumOfTroops(redPlayer.bonustroops)
-                                redPlayer.setbonustroops()
-                                bluePlayer.setbonustroops()
-
-                    if my_string.find("eg") == False:
-                        flag= stateeg.addelements(self.country,c102,c101,redPlayer,bluePlayer)
-                        if flag == True:
-                            if(c101.label=="RED PLAYER"):
-                                c101.label="BLUE PLAYER"
-                                c101.color=bluePlayer.color
-                                c101.setOwner(bluePlayer)
-
-
-                            else:
-                                c101.label="RED PLAYER"
-                                c101.color=redPlayer.color
-                                c101.setOwner(redPlayer)
-
-
                     return self.action
             else:
                 self.mouse_over = False
+
     def update_bonus(self, mouse_pos,mouse_up,country,c102,c101,redPlayer,bluePlayer):
             stateus =US_STATE(None)
-            stateeg=EGGame()
             if self.rect.collidepoint(mouse_pos):
                 self.mouse_over = True
                 if mouse_up:

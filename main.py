@@ -3,13 +3,13 @@ import pygame.freetype
 from pygame.sprite import Sprite
 from pygame.rect import Rect
 from enum import Enum
-import UIelement
+import UIElement
 import title_screen
 from US_STATE import *
 from Agent import *
 from title_screen import *
-import us_screen
-from us_screen import *
+import US_SCREEN
+from US_SCREEN import *
 import egypt_screen
 from egypt_screen import *
 import select_screen
@@ -32,8 +32,6 @@ def main():
     screen.blit(MANUAL_CURSOR, (pygame.mouse.get_pos()))
 
     while running:
-        #usgame = USGame(Agent(), Agent())
-        #usgame.splitCountriesFixed()
 
         if game_state == GameState.TITLE:
             game_state = title_screen(screen)
