@@ -80,7 +80,15 @@ class UIElement(Sprite):
                     return self.action
             else:
                 self.mouse_over = False
+    def actionbutton(self,mouse_pos,mouse_up,state,country):
 
+        if self.rect.collidepoint(mouse_pos):
+            self.mouse_over = True
+            if mouse_up:
+
+                state.addToCurrentCountries(state,country)
+        else:
+            self.mouse_over = False
     def update_bonus(self, mouse_pos,mouse_up,country,c102,c101,redPlayer,bluePlayer):
             stateus =US_STATE(None)
             if self.rect.collidepoint(mouse_pos):

@@ -1,5 +1,5 @@
 import random
-
+from  AgressiveAgent import *
 BLUE = (9, 5, 101)
 WHITE = (255, 255, 255, 0)
 BLACK = (0, 0, 0)
@@ -86,24 +86,38 @@ class US_STATE:
     c35.neighbors = {c31, c32, c36, c37}
     c36.neighbors = {c31, c35}
     c37.neighbors = {c33, c35}
-    emptyarray1=[]
-    emptyarray2=[]
+
     agent1 = Human( "human", DARKRED)  # red player
     agent2 = Human("human", DARKBLUE)  # blue player
+    attackingCountries=[]  # carry the attaching to and from country
 
     turn=False   #false for agent 1  -----------    true for agent 2
     countries=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10,
                             c11, c12, c13, c14, c15, c16, c17, c18, c19,
                                c20, c21, c22, c23, c24, c25, c26, c27, c28, c29,
                                c30, c31, c32, c33, c34, c35, c36, c37]
+    def addToCurrentCountries(self,country):
+        if country not in self.attackingCountries:
+            self.attackingCountries.append(country)
+        if len(self.attackingCountries) ==2:
+            print(self.attackingCountries)
+            self.updateState(self)
+        if len(self.attackingCountries) >=2:
+            self.attackingCountries.clear()
+
+
+
+
+
+
     def initializeState(self):
 
         available_countries = [self.c1, self.c2, self.c3, self.c4, self.c5, self.c6, self.c7, self.c8, self.c9, self.c10,
                                self.c11, self.c12, self.c13, self.c14, self.c15, self.c16, self.c17, self.c18, self.c19,
                                self.c20, self.c21, self.c22, self.c23, self.c24, self.c25, self.c26, self.c27, self.c28, self.c29,
                                self.c30, self.c31, self.c32, self.c33, self.c34, self.c35, self.c36, self.c37]
-        redTroops = 20
-        blueTroops = 20
+        redTroops = 40
+        blueTroops = 40
 
         canAddRed = True
         canAddBlue = True
@@ -140,8 +154,13 @@ class US_STATE:
                     canAddBlue = False
 
     def updateState(self):
+
         if self.turn:
-            self.agent2.attack()
+            if self.agent2.attack(self.attackingCountries[0],self.attackingCountries[1],2):
+                self.turn=False
+                print('Blue turn')
         else:
-            self.agent1.attack()
+            if self.agent1.attack(self.attackingCountries[0],self.attackingCountries[1],2):
+                print('Red Turn ')
+                self.turn=True
 

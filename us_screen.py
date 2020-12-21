@@ -54,7 +54,7 @@ def us_screen(screen):
                                             bg_rgb=WHITE,
                                             text_rgb=state.countries[i].owner.color,
                                             text=str(state.countries[i].numOfTroops,),
-                                            action=None,
+                                            action=5,
                                             id=country,
                                             country=state.countries[i],
                                             ))
@@ -74,9 +74,11 @@ def us_screen(screen):
 
 
         for button in uiElements:
-            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,)
-            button.update_text(str(button.country.numOfTroops), button.country.owner.color)
+            ui_action = button.actionbutton(pygame.mouse.get_pos(), mouse_up,state,button.country)
+            button.update_text(str(button.country.numOfTroops),button.country.owner.color)
+
             if ui_action is not None:
+
                 return ui_action
             button.draw(screen)
         return_btn.draw(screen)
