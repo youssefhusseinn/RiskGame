@@ -23,7 +23,7 @@ class Human(Agent):
             countryAttackTo=amountOfTroops
             countryAttackTo.owner = self
          else:
-            ctypes.windll.user32.MessageBoxW(0, "invalid attack", "ALERT", 1)
+            ctypes.windll.user32.MessageBoxW(0, "invalid attack PLEASE TRY AGAIN", "ALERT", 1)
      
          
 
