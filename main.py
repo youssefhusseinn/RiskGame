@@ -3,13 +3,13 @@ import pygame.freetype
 from pygame.sprite import Sprite
 from pygame.rect import Rect
 from enum import Enum
-import UIelement
+import UIElement
 import title_screen
 from US_STATE import *
 from Agent import *
 from title_screen import *
-import us_screen
-from us_screen import *
+import US_SCREEN
+from US_SCREEN import *
 import egypt_screen
 from egypt_screen import *
 import select_screen
@@ -30,10 +30,12 @@ def main():
     pygame.mouse.set_visible(False)  # hide the cursor
     MANUAL_CURSOR = pygame.image.load('assets/mouse.png').convert_alpha()
     screen.blit(MANUAL_CURSOR, (pygame.mouse.get_pos()))
+    agent1 = Human("PASSIVE", DARKRED)
+    agent2 = PassiveAgent("PASSIVE", DARKBLUE)
+    agent3 = PacifistAgent("PACIFIST", DARKBLUE)
+    agent4 = AgressiveAgent("AGGRESSIVE", DARKBLUE)
 
     while running:
-        #usgame = USGame(Agent(), Agent())
-        #usgame.splitCountriesFixed()
 
         if game_state == GameState.TITLE:
             game_state = title_screen(screen)
@@ -48,7 +50,7 @@ def main():
         if(game_state== GameState.egypt):
             game_state = egypt_screen(screen)
         if (game_state == GameState.us):
-            game_state = us_screen(screen)
+            game_state = us_screen(screen,agent1,agent2)
 
 
     return

@@ -1,8 +1,8 @@
 import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
-import UIelement
-from UIelement import *
+import UIElement
+from UIElement import *
 import gamestate
 from gamestate import GameState
 BLUE = (9, 5, 101)
@@ -10,7 +10,7 @@ WHITE = (255, 255, 255)
 
 
 def title_screen(screen):
-    element = UIelement
+    element = UIElement
 
     start_btn = element.UIElement(
         center_position=(700, 400),
@@ -19,7 +19,6 @@ def title_screen(screen):
         text_rgb=WHITE,
         text="START",
         id=0,
-        country=None,
         action=GameState.NEWGAME,
     )
     quit_btn = element.UIElement(
@@ -28,7 +27,6 @@ def title_screen(screen):
         bg_rgb=BLUE,
         text_rgb=WHITE,
         text="QUIT",
-        country=None,
 
         id=1,
         action=GameState.QUIT
@@ -45,7 +43,7 @@ def title_screen(screen):
         screen.fill(BLUE)
 
         for button in buttons:
-            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,None,None,None,None,None)
+            ui_action = button.update(pygame.mouse.get_pos(), mouse_up)
             if ui_action is not None:
                 return ui_action
             button.draw(screen)

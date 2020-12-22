@@ -1,8 +1,8 @@
 import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
-import UIelement
-from UIelement import *
+import UIElement
+from UIElement import *
 import main
 from main import *
 

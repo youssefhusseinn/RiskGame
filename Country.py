@@ -6,4 +6,4 @@ class Country:
         self.id = id
 
     def addTroops(self, amount):
-        self.numOfTroops += amount
+        self.numOfTroops += int(amount)

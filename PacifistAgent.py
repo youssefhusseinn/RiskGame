@@ -2,13 +2,17 @@ from Agent import *
 
 
 class PacifistAgent(Agent):
+    def attack(self):
+        print("waslt la attack el pacifist")
+        return True
+
     def takeTurn(self):
         country = self.chooseCountryToAddTroops()
         amount = self.calcBonusTroops()
         country.addTroops(amount)
         self.attack()
 
-    def attack(self):
+    def attackold(self):
         (attackerCountry, defenderCountry) = self.getOpponentCountryWithMinimumTroops()
         if attackerCountry is None:
             return

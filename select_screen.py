@@ -1,15 +1,15 @@
 import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
-import UIelement
-from UIelement import *
+import UIElement
+from UIElement import *
 import main
 from main import *
 BLUE = (9, 5, 101)
 WHITE = (255, 255, 255)
 
 def select_screen(screen):
-    element = UIelement
+    element = UIElement
 
     return_btn = element.UIElement(
         center_position=(300, 700),
@@ -18,8 +18,6 @@ def select_screen(screen):
         text_rgb=WHITE,
         text="Return to main menu",
         id=0,
-        country=None,
-
         action=GameState.TITLE,
     )
     egypt_btn = element.UIElement(
@@ -29,8 +27,6 @@ def select_screen(screen):
         text_rgb=WHITE,
         text="EGYPT",
         id=1,
-        country=None,
-
         action=GameState.egypt,
     )
     us_btn = element.UIElement(
@@ -40,8 +36,6 @@ def select_screen(screen):
         text_rgb=WHITE,
         text="UNITED STATE",
         id=2,
-        country=None,
-
         action=GameState.us,
     )
     buttons=[return_btn,egypt_btn,us_btn]
@@ -62,7 +56,7 @@ def select_screen(screen):
 
 
         for button in buttons:
-            ui_action = button.update(pygame.mouse.get_pos(), mouse_up,None,None,None,None,None)
+            ui_action = button.update(pygame.mouse.get_pos(), mouse_up)
             if ui_action is not None:
                 return ui_action
             button.draw(screen)
