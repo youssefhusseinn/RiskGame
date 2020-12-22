@@ -11,6 +11,7 @@ class Agent:
         self.countries = []
         self.color = color
         self.type=type
+        self.bonusTroops=0
 
     def addCountry(self,country):
         self.countries.append(country)
@@ -20,9 +21,10 @@ class Agent:
         self.addTroops(amount)
         self.attack()
 
-    def calcBonusTroops(self) -> int:
+    def calcBonusTroops(self) :
         numberOfCountries = len(self.countries)
         return max(3, numberOfCountries // 3)
+
 
     def attack(self):
         # depends on each agent.. every agent has his own attacking algorithm

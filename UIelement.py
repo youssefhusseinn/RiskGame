@@ -24,7 +24,7 @@ def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
 class UIElement(Sprite):
     """ An user interface element that can be added to a surface """
 
-    def __init__(self, center_position, text, font_size, bg_rgb, text_rgb,id,country,action=None):
+    def __init__(self, center_position, text, font_size, bg_rgb, text_rgb,id,action=None):
 
         """
         Args:
@@ -34,7 +34,6 @@ class UIElement(Sprite):
             bg_rgb (background colour) - tuple (r, g, b)
             text_rgb (text colour) - tuple (r, g, b)
         """
-        self.country= country
         self.text=text
         self.font_size=font_size
         self.bg_rgb =bg_rgb
@@ -80,13 +79,22 @@ class UIElement(Sprite):
                     return self.action
             else:
                 self.mouse_over = False
+    def updateAI(self, mouse_pos,mouse_up,state):
+
+        if self.rect.collidepoint(mouse_pos):
+            self.mouse_over = True
+            if mouse_up:
+                state.updateStateAI()
+        else:
+            self.mouse_over = False
+
     def actionbutton(self,mouse_pos,mouse_up,state,country):
 
         if self.rect.collidepoint(mouse_pos):
             self.mouse_over = True
             if mouse_up:
 
-                state.addToCurrentCountries(state,country)
+                state.addToCurrentCountries(country)
         else:
             self.mouse_over = False
     def update_bonus(self, mouse_pos,mouse_up,country,c102,c101,redPlayer,bluePlayer):

@@ -18,8 +18,6 @@ def select_screen(screen):
         text_rgb=WHITE,
         text="Return to main menu",
         id=0,
-        country=None,
-
         action=GameState.TITLE,
     )
     egypt_btn = element.UIElement(
@@ -29,8 +27,6 @@ def select_screen(screen):
         text_rgb=WHITE,
         text="EGYPT",
         id=1,
-        country=None,
-
         action=GameState.egypt,
     )
     us_btn = element.UIElement(
@@ -40,8 +36,6 @@ def select_screen(screen):
         text_rgb=WHITE,
         text="UNITED STATE",
         id=2,
-        country=None,
-
         action=GameState.us,
     )
     buttons=[return_btn,egypt_btn,us_btn]

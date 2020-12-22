@@ -30,6 +30,10 @@ def main():
     pygame.mouse.set_visible(False)  # hide the cursor
     MANUAL_CURSOR = pygame.image.load('assets/mouse.png').convert_alpha()
     screen.blit(MANUAL_CURSOR, (pygame.mouse.get_pos()))
+    agent1 = Human("PASSIVE", DARKRED)
+    agent2 = PassiveAgent("PASSIVE", DARKBLUE)
+    agent3 = PacifistAgent("PACIFIST", DARKBLUE)
+    agent4 = AgressiveAgent("AGGRESSIVE", DARKBLUE)
 
     while running:
 
@@ -46,7 +50,7 @@ def main():
         if(game_state== GameState.egypt):
             game_state = egypt_screen(screen)
         if (game_state == GameState.us):
-            game_state = us_screen(screen)
+            game_state = us_screen(screen,agent1,agent2)
 
 
     return

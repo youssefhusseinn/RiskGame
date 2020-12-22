@@ -9,16 +9,15 @@ class Human(Agent):
     def canAttack(self,countryAttackFrom,countryAttackTo,amountOfTroops):
         if      countryAttackFrom.owner== self and \
                 countryAttackTo in countryAttackFrom.neighbors and \
-                amountOfTroops-1 <= countryAttackFrom.numOfTroops and \
-                amountOfTroops-1 > countryAttackTo.numOfTroops :
+                amountOfTroops < countryAttackFrom.numOfTroops and amountOfTroops >= countryAttackTo.numOfTroops :
             return True
         else:
             return False
             
 
     def attack(self,countryAttackFrom,countryAttackTo,amountOfTroops):
-         #flag=self.canAttack(countryAttackFrom,countryAttackTo,amountOfTroops)
-         flag=True
+
+         flag=self.canAttack(countryAttackFrom,countryAttackTo,amountOfTroops)
          if flag:
             print(countryAttackFrom)
             countryAttackFrom.numOfTroops=countryAttackFrom.numOfTroops-amountOfTroops
