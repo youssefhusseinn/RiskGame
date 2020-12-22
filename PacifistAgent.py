@@ -23,10 +23,10 @@ class PacifistAgent(Agent):
     def chooseCountryToAddTroops(self) -> Country:
         country = None
         mintroops = 10e6
-        for c in self.countries.keys():
-            if self.countries[c] < mintroops:
+        for c in self.countries:
+            if c.numOfTroops < mintroops:
                 country = c
-                mintroops = self.countries[c]
+                mintroops = c.numOfTroops
         return country
 
     def getOpponentCountryWithMinimumTroops(self) -> (Country, Country):
