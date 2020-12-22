@@ -14,9 +14,9 @@ class AgressiveAgent(Agent):
     def chooseCountryToAddTroops(self) -> Country:
         country = None
         maxTroops = int(-1e6)
-        for c in self.countries.keys():
-            if self.countries[c] > maxTroops:
-                maxTroops = self.countries[c]
+        for c in self.countries:
+            if c.numOfTroops > maxTroops:
+                maxTroops = c.numOfTroops
                 country = c
         return country
 
