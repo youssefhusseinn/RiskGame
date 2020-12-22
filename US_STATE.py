@@ -162,10 +162,10 @@ class US_STATE:
                     canAddBlue = False
     def updateStateAI(self):
         if self.turn:
-            if self.agent2.attack():
+            if self.agent2.takeTurn():
                 self.turn = False
         else:
-            if self.agent1.attack():
+            if self.agent1.takeTurn():
                 self.turn = True
 
     def updateStatehuman(self):
