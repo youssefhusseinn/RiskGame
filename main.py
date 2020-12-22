@@ -30,8 +30,9 @@ def main():
     pygame.mouse.set_visible(False)  # hide the cursor
     MANUAL_CURSOR = pygame.image.load('assets/mouse.png').convert_alpha()
     screen.blit(MANUAL_CURSOR, (pygame.mouse.get_pos()))
-    agent1 = Human("PASSIVE", DARKRED)
-    agent2 = PassiveAgent("PASSIVE", DARKBLUE)
+    agent1 = Human("HUMAN", DARKRED)
+    agent2 = PacifistAgent("PACIFIST", DARKBLUE)
+    #agent2 = PassiveAgent("PASSIVE", DARKBLUE)
     agent3 = PacifistAgent("PACIFIST", DARKBLUE)
     agent4 = AgressiveAgent("AGGRESSIVE", DARKBLUE)
 

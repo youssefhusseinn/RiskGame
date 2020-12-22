@@ -1,6 +1,5 @@
 from Agent import *
 
-
 class PassiveAgent(Agent):
     def attack(self):
         self.takeTurn()

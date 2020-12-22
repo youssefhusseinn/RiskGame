@@ -161,18 +161,18 @@ class US_STATE:
                 if blueTroops == 0:
                     canAddBlue = False
     def updateStateAI(self):
-        if self.turn :
+        if self.turn:
             if self.agent2.attack():
-                self.turn=False
+                self.turn = False
         else:
             if self.agent1.attack():
-                self.turn=True
+                self.turn = True
 
     def updateStatehuman(self):
-        self.agent1.ca
-        if self.turn :
+        #self.agent1.ca
+        if self.turn:
             if self.agent2.attack(self.attackingCountries[0],self.attackingCountries[1],self.amountofattackingtroops):
-                self.turn=False
+                self.turn = False
         else:
             if self.agent1.attack(self.attackingCountries[0],self.attackingCountries[1],int(self.amountofattackingtroops)):
-                self.turn=True
+                self.turn = True

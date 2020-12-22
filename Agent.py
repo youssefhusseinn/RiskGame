@@ -7,19 +7,22 @@ DARKBLUE = (2, 8, 126)
 
 class Agent:
 
-    def __init__(self,type,color):
+    def __init__(self, type, color):
         self.countries = []
         self.color = color
-        self.type=type
-        self.bonusTroops=0
+        self.type = type
+        self.bonusTroops = 0
 
-    def addCountry(self,country):
+    def addCountry(self, country):
         self.countries.append(country)
 
     def takeTurn(self):
         amount = self.calcBonusTroops()
         self.addTroops(amount)
         self.attack()
+
+    def removeCountry(self, country: Country):
+        self.countries.remove(country)
 
     def calcBonusTroops(self) :
         numberOfCountries = len(self.countries)
