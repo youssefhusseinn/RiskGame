@@ -5,9 +5,16 @@ import copy
 
 class Node:
     def __init__(self, countries: [Country], agent: Agent):
-        self.countries = countries
+        self.countries = copy.deepcopy(countries)
         self.agent = agent
         self.children = []
+
+    def calcBonus(self) -> int:
+        counter = 0
+        for c in self.countries:
+            if c.owner == self.agent:
+                counter += 1
+        return max(3, counter // 3)
 
     def isGoal(self):
         for country in self.countries:
@@ -18,7 +25,7 @@ class Node:
     def generateChildren(self):
         for attacker in self.agent.countries:
             for defender in attacker.neighbors:
-                if defender.owner != self.agent and attacker.numOfTroops - 1 >defender.numOfTroops:
+                if defender.owner != self.agent and attacker.numOfTroops - 1 > defender.numOfTroops:
                     newCountries = []
                     for c in self.countries:
                         if c != attacker and c != defender:

@@ -112,7 +112,6 @@ class UIElement(Sprite):
                     return
         else:
             self.mouse_over = False
-        print(self.agentsArray)
 
 
     def actionbutton(self,mouse_pos,mouse_up,state,country):

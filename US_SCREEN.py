@@ -47,7 +47,6 @@ def us_screen(screen,agent1,agent2):
         text="Return to main menu",
         id="0",
         action=GameState.TITLE
-
     )
     uiElements=[]
     i=0
