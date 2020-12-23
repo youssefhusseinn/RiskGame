@@ -9,12 +9,14 @@ class Agent:
 
     def __init__(self, type, color):
         self.countries = []
+        #self.countriesIDs=[]
         self.color = color
         self.type = type
         self.bonusTroops = 0
 
     def addCountry(self, country):
         self.countries.append(country)
+        #self.countriesIDs.append(country.id)
 
     def takeTurn(self):
         amount = self.calcBonusTroops()
@@ -28,7 +30,7 @@ class Agent:
                 self.countries.remove(c)
                 break
         #self.countries.remove(country)
-
+#        self.countriesIDs.remove(country.id)
     def calcBonusTroops(self):
         numberOfCountries = len(self.countries)
         return max(3, numberOfCountries // 3)
