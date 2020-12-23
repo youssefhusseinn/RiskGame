@@ -7,3 +7,10 @@ class Country:
 
     def addTroops(self, amount):
         self.numOfTroops += int(amount)
+
+    def addBonusTroops(self,amount):
+        self.numOfTroops+=int(amount)
+        self.owner.bonusTroops-=1
+        print("Owner bonus troops: ")
+        print(self.owner.bonusTroops)
+        print("************")

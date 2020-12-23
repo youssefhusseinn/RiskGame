@@ -40,6 +40,7 @@ class UIElement(Sprite):
         self.text_rgb=text_rgb
         self.center_position= center_position
         self.id=id
+        self.num=0
         self.mouse_over = False  # indicates if the mouse is over the element
         #self.tet=text
         # create the default image
@@ -114,26 +115,19 @@ class UIElement(Sprite):
             self.mouse_over = False
 
 
-    def actionbutton(self,mouse_pos,mouse_up,state,country):
+    def actionbutton(self,mouse_pos,mouse_up,state,country,addBonus):
 
         if self.rect.collidepoint(mouse_pos):
             self.mouse_over = True
             if mouse_up:
-
-                state.addToCurrentCountries(country)
+                if addBonus:
+                    self.update_bonus(country)
+                else:
+                    state.addToCurrentCountries(country)
         else:
             self.mouse_over = False
-    def update_bonus(self, mouse_pos,mouse_up,country,c102,c101,redPlayer,bluePlayer):
-            stateus =US_STATE(None)
-            if self.rect.collidepoint(mouse_pos):
-                self.mouse_over = True
-                if mouse_up:
-                    my_string = str(self.id)
-                    stateus.addbonustroops(self.country,c102,c101,redPlayer,bluePlayer)
-
-                    return self.action
-            else:
-                self.mouse_over = False
+    def update_bonus(self,country):
+            country.addBonusTroops(1)
     def draw(self, surface):
         """ Draws element onto a surface """
         surface.blit(self.image, self.rect)
@@ -174,4 +168,13 @@ class UIElement(Sprite):
                 highlighted_image.get_rect(center=self.center_position),
             ]
             self.text = text
+
+    def isPlayerCountry(self,id):
+        if self.id==id:
+            return True
+        return False
+    def showPlus(self):
+        print('Show plus')
+        self.text="0000"
+        return
 

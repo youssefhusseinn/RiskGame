@@ -93,6 +93,15 @@ def select_screen(screen,state):
         id=2,
         action=0,
     )
+    miniMax_btn = element.UIElement(
+        center_position=(1050, 525),
+        font_size=30,
+        bg_rgb=WHITE,
+        text_rgb=DARKRED,
+        text="MINIMAX",
+        id=2,
+        action=0,
+    )
     human_btn2 = element.UIElement(
         center_position=(100,575),
         font_size=30,
@@ -138,8 +147,17 @@ def select_screen(screen,state):
         id=2,
         action=0,
     )
-    selection_buttons=[human_btn,pacifist_btn,passive_btn,greedy_btn,agressive_btn,
-                       human_btn2,pacifist_btn2,passive_btn2,greedy_btn2,agressive_btn2]
+    miniMax_btn2 = element.UIElement(
+        center_position=(1050, 575),
+        font_size=30,
+        bg_rgb=WHITE,
+        text_rgb=DARKBLUE,
+        text="MINIMAX",
+        id=2,
+        action=0,
+    )
+    selection_buttons=[human_btn,pacifist_btn,passive_btn,greedy_btn,agressive_btn,miniMax_btn,
+                       human_btn2,pacifist_btn2,passive_btn2,greedy_btn2,agressive_btn2,miniMax_btn2]
     while True:
         mouse_up = False
         for event in pygame.event.get():

@@ -180,10 +180,15 @@ class US_STATE:
             self.turn = True
 
     def updateStatehuman(self):
-        #self.agent1.ca
         if self.turn:
+            self.agent2.bonusTroops=self.agent2.calcBonusTroops()
             if self.agent2.attack(self.attackingCountries[0],self.attackingCountries[1],self.amountofattackingtroops):
                 self.turn = False
         else:
+            self.agent1.bonusTroops = self.agent1.calcBonusTroops()
             if self.agent1.attack(self.attackingCountries[0],self.attackingCountries[1],int(self.amountofattackingtroops)):
+
                 self.turn = True
+        print("Agent1 Bonus Troops: "+str(self.agent1.bonusTroops))
+        print("Agent2 bonus Troops: "+str(self.agent2.bonusTroops))
+        print("**************")

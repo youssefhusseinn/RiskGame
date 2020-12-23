@@ -22,7 +22,7 @@ class Human(Agent):
             countryAttackTo.numOfTroops = amountOfTroops
             countryAttackTo.owner.removeCountry(countryAttackTo)
             countryAttackTo.owner = self
-            self.countries.append(countryAttackTo)
+            self.addCountry(countryAttackTo)
             return True
          else:
             print("invalid attack")

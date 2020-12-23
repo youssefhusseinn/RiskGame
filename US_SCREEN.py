@@ -16,7 +16,7 @@ from player import *
 import input_box
 from PassiveAgent import *
 from input_box import *
-BLUE = (9, 5, 101)
+BLUE = (128, 128, 128)
 WHITE = (255, 255, 255, 0)
 BLACK = (0, 0, 0)
 DARKRED = (229, 12, 22)
@@ -24,7 +24,7 @@ DARKBLUE = (2, 8, 126)
 
 def us_screen(screen,agent1,agent2):
 
-    countriesID = [(200, 50),(150, 150), (100, 300), (270, 170), (195, 300),
+    countriesPositions = [(200, 50),(150, 150), (100, 300), (270, 170), (195, 300),
                    (380, 100), (410, 220), (315, 310), (300, 460), (565, 110),
                     (565, 200),(565, 280), (450, 340),(430, 470), (600, 370),
                     (620, 450),(600, 580), (700, 170),(720, 270), (730, 380),
@@ -49,13 +49,21 @@ def us_screen(screen,agent1,agent2):
         action=GameState.TITLE
     )
     uiElements=[]
-    i=0
+
     element= UIElement
     turnLabel=element.UIElement(center_position=(1100,50),
                       font_size=30,
                       bg_rgb=WHITE,
                       text_rgb=BLACK,
                       text="red player",
+                      action=5,
+                      id=0,
+                      )
+    turnLabel_bonus=element.UIElement(center_position=(1250,50),
+                      font_size=30,
+                      bg_rgb=WHITE,
+                      text_rgb=BLACK,
+                      text="Bonus",
                       action=5,
                       id=0,
                       )
@@ -68,17 +76,20 @@ def us_screen(screen,agent1,agent2):
                                   id=-1,
                                   )
 
-    buttons=[turnLabel]
-    for country in countriesID:
-
-        uiElements.append(element.UIElement(center_position= countriesID[i],
+    buttons=[turnLabel,turnLabel_bonus]
+    i=0
+    for country in countriesPositions:
+        e=element.UIElement(center_position= countriesPositions[i],
                                             font_size=30,
                                             bg_rgb=WHITE,
                                             text_rgb=state.countries[i].owner.color,
                                             text=str(state.countries[i].numOfTroops,),
                                             action=5,
                                             id=i,
-                                            ))
+                                            )
+        e.num="us"+str(i+1)
+        uiElements.append(e)
+
         i+=1
     while True:
 
@@ -99,8 +110,21 @@ def us_screen(screen,agent1,agent2):
                 mouse_up = True
 
         for button in uiElements:
-            ui_action1 = button.actionbutton(pygame.mouse.get_pos(), mouse_up,state,state.countries[button.id])
-            button.update_text(str(state.countries[button.id].numOfTroops),state.countries[button.id].owner.color)
+            addBonus=False
+            button.update_text(str(state.countries[button.id].numOfTroops), state.countries[button.id].owner.color)
+            if state.turn == False and state.agent1.bonusTroops > 0  :  # agent1 bonus adding turn
+                addBonus=True
+                if button.num in state.agent1.countriesIDs:
+
+                    button.update_text(str(state.countries[button.id].numOfTroops) + '+',
+                                       state.countries[button.id].owner.color)
+
+            elif state.turn == True and state.agent2.bonusTroops > 0:  # agent1
+                addBonus=True
+                if button.num in state.agent2.countriesIDs:
+                    button.update_text(str(state.countries[button.id].numOfTroops) + '+',
+                                       state.countries[button.id].owner.color)
+            ui_action1 = button.actionbutton(pygame.mouse.get_pos(), mouse_up, state, state.countries[button.id],addBonus)
 
             if ui_action1 is not None:
 
@@ -108,10 +132,16 @@ def us_screen(screen,agent1,agent2):
             button.draw(screen)
 
         ui_action2 = turnLabel.update(pygame.mouse.get_pos(), mouse_up)
+        ui_action5= turnLabel_bonus.update(pygame.mouse.get_pos(), mouse_up)
+
         if state.turn == False:
             turnLabel.update_text("RED PLAYER : ", DARKRED)
+            turnLabel_bonus.update_text(str(state.agent1.bonusTroops),DARKRED)
         else:
             turnLabel.update_text("BLUE PLAYER : ", DARKBLUE)
+            turnLabel_bonus.update_text(str(state.agent2.bonusTroops), DARKBLUE)
+        if ui_action5 is not None:
+            return ui_action5
         if ui_action2 is not None:
             return ui_action2
         ui_action3 = return_btn.update(pygame.mouse.get_pos(), mouse_up)
@@ -121,8 +151,9 @@ def us_screen(screen,agent1,agent2):
         if ui_action4 is not None:
             return ui_action4
         turnLabel.draw(screen)
+        turnLabel_bonus.draw(screen)
         return_btn.draw(screen)
-        turnLabel.draw(screen)
+
         if (not state.turn and state.agent1.type != "HUMAN") or (state.turn and state.agent2.type != "HUMAN"):
             GO_LABEL.draw(screen)
         else:
