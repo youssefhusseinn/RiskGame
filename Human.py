@@ -13,7 +13,7 @@ class Human(Agent):
             return False
             
 
-    def attack(self,countryAttackFrom,countryAttackTo,amountOfTroops):
+    def attack(self, countryAttackFrom, countryAttackTo, amountOfTroops):
 
          flag=self.canAttack(countryAttackFrom,countryAttackTo,amountOfTroops)
          if flag:
@@ -25,6 +25,7 @@ class Human(Agent):
             self.countries.append(countryAttackTo)
             return True
          else:
+            print("invalid attack")
           #  ctypes.windll.user32.MessageBoxW(0, "invalid attack PLEASE TRY AGAIN", "ALERT", 1)
             return False
      
