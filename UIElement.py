@@ -23,7 +23,7 @@ def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
 
 class UIElement(Sprite):
     """ An user interface element that can be added to a surface """
-    agentsArray=[]
+
     def __init__(self, center_position, text, font_size, bg_rgb, text_rgb,id,action=None):
 
         """
@@ -40,7 +40,6 @@ class UIElement(Sprite):
         self.text_rgb=text_rgb
         self.center_position= center_position
         self.id=id
-        self.num=0
         self.mouse_over = False  # indicates if the mouse is over the element
         #self.tet=text
         # create the default image
@@ -88,46 +87,27 @@ class UIElement(Sprite):
                 state.updateStateAI()
         else:
             self.mouse_over = False
-    def update_select(self,mouse_pos, mouse_up,text,color,state):
-        agent=None
+
+    def actionbutton(self,mouse_pos,mouse_up,state,country):
 
         if self.rect.collidepoint(mouse_pos):
             self.mouse_over = True
             if mouse_up:
-                if (text == "HUMAN"):
-                    agent = Human("HUMAN", color)
-                if (text == "AGRESSIVE"):
-                    agent = AgressiveAgent("AGRESSIVE", color)
-                if (text == "PACIFIST"):
-                    agent = PacifistAgent("PACIFIST", color)
-                if (text == "GREEDY"):
-                    agent = GreedyAgent("GREEDY", color)
-                if (text == "PASSIVE"):
-                    agent = PassiveAgent("PASSIVE", color)
-                if len(self.agentsArray) < 2:
-                    self.agentsArray.append(agent)
-                if (len(self.agentsArray) == 2):
-                    state.agent1 = self.agentsArray[0]
-                    state.agent2 = self.agentsArray[1]
-                    self.agentsArray.clear()
-                    return
+                print(country.owner.type)
+                state.addToCurrentCountries(country)
         else:
             self.mouse_over = False
+    def update_bonus(self, mouse_pos,mouse_up,country,c102,c101,redPlayer,bluePlayer):
+            stateus =US_STATE(None)
+            if self.rect.collidepoint(mouse_pos):
+                self.mouse_over = True
+                if mouse_up:
+                    my_string = str(self.id)
+                    stateus.addbonustroops(self.country,c102,c101,redPlayer,bluePlayer)
 
-
-    def actionbutton(self,mouse_pos,mouse_up,state,country,addBonus):
-
-        if self.rect.collidepoint(mouse_pos):
-            self.mouse_over = True
-            if mouse_up:
-                if addBonus:
-                    self.update_bonus(country)
-                else:
-                    state.addToCurrentCountries(country)
-        else:
-            self.mouse_over = False
-    def update_bonus(self,country):
-            country.addBonusTroops(1)
+                    return self.action
+            else:
+                self.mouse_over = False
     def draw(self, surface):
         """ Draws element onto a surface """
         surface.blit(self.image, self.rect)
@@ -168,13 +148,4 @@ class UIElement(Sprite):
                 highlighted_image.get_rect(center=self.center_position),
             ]
             self.text = text
-
-    def isPlayerCountry(self,id):
-        if self.id==id:
-            return True
-        return False
-    def showPlus(self):
-        print('Show plus')
-        self.text="0000"
-        return
 
