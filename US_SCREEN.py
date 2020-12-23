@@ -43,7 +43,7 @@ def us_screen(screen,agent1,agent2):
         center_position=(250, 700),
         font_size=30,
         bg_rgb=BLUE,
-        text_rgb=WHITE,
+        text_rgb=BLACK,
         text="Return to main menu",
         id="0",
         action=GameState.TITLE
@@ -60,7 +60,7 @@ def us_screen(screen,agent1,agent2):
                       action=5,
                       id=0,
                       )
-    GO_LABEL = element.UIElement(center_position=(1300, 200),
+    GO_LABEL = element.UIElement(center_position=(1300, 100),
                                   font_size=30,
                                   bg_rgb=WHITE,
                                   text_rgb=(255,255,255),
@@ -128,6 +128,7 @@ def us_screen(screen,agent1,agent2):
             GO_LABEL.draw(screen)
         else:
             inputbox.draw(screen)
+        return_btn.draw(screen)
 
         MANUAL_CURSOR = pygame.image.load('assets/mouse.png').convert_alpha()
         screen.blit(MANUAL_CURSOR, (pygame.mouse.get_pos()))

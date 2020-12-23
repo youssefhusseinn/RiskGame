@@ -2,6 +2,9 @@ from Agent import *
 
 
 class PacifistAgent(Agent):
+    def attack(self,countries):
+        print("waslt la attack el pacifist")
+        return True
 
     def takeTurn(self):
         country = self.chooseCountryToAddTroops()

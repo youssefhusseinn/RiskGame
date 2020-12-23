@@ -52,43 +52,43 @@ class US_STATE:
     c35 = Country("us35")
     c36 = Country("us36")
     c37 = Country("us37")
-    c1.neighbors = {c2, c4}
-    c2.neighbors = {c1, c3, c4, c5}
-    c3.neighbors = {c2, c5, c9}
-    c4.neighbors = {c1, c2, c5, c6, c7, c8}
-    c5.neighbors = {c2, c3, c4, c8, c9}
-    c6.neighbors = {c4, c7, c10, c11}
-    c7.neighbors = {c4, c6, c8, c11, c12, c13}
-    c8.neighbors = {c4, c5, c7, c9, c13, c14}
-    c9.neighbors = {c3, c5, c8, c13, c14}
-    c10.neighbors = {c6, c11, c18}
-    c11.neighbors = {c6, c7, c10, c12, c18, c19}
-    c12.neighbors = {c7, c11, c13, c15, c19, c20}
-    c13.neighbors = {c7, c8, c9, c12, c14, c15, c16}
-    c14.neighbors = {c8, c9, c13, c16, c17}
-    c15.neighbors = {c12, c13, c16, c20}
-    c16.neighbors = {c13, c14, c15, c17, c20, c21}
-    c17.neighbors = {c14, c16, c21, c22}
-    c18.neighbors = {c10, c11, c19, c23, c24}
-    c19.neighbors = {c11, c12, c18, c20, c23, c25}
-    c20.neighbors = {c12, c15, c16, c19, c21, c25, c28, c32}
-    c21.neighbors = {c16, c17, c20, c22, c32, c34}
-    c22.neighbors = {c17, c21, c34}
-    c23.neighbors = {c18, c19, c24, c25}
-    c24.neighbors = {c23, c25, c26, c27}
-    c25.neighbors = {c19, c20, c23, c26, c28}
-    c26.neighbors = {c24, c25, c27, c28}
-    c27.neighbors = {c24, c26, c28, c29}
-    c28.neighbors = {c20, c25, c26, c27, c29, c31, c32}
-    c29.neighbors = {c27, c28, c30}
-    c30.neighbors = {c29}
-    c31.neighbors = {c28, c32, c35, c36}
-    c32.neighbors = {c20, c21, c28, c31, c33, c34, c35}
-    c33.neighbors = {c32, c34, c35, c37}
-    c34.neighbors = {c21, c22, c32, c33}
-    c35.neighbors = {c31, c32, c36, c37}
-    c36.neighbors = {c31, c35}
-    c37.neighbors = {c33, c35}
+    c1.neighbors = [c2, c4]
+    c2.neighbors = [c1, c3, c4, c5]
+    c3.neighbors = [c2, c5, c9]
+    c4.neighbors = [c1, c2, c5, c6, c7, c8]
+    c5.neighbors = [c2, c3, c4, c8, c9]
+    c6.neighbors = [c4, c7, c10, c11]
+    c7.neighbors = [c4, c6, c8, c11, c12, c13]
+    c8.neighbors = [c4, c5, c7, c9, c13, c14]
+    c9.neighbors = [c3, c5, c8, c13, c14]
+    c10.neighbors = [c6, c11, c18]
+    c11.neighbors = [c6, c7, c10, c12, c18, c19]
+    c12.neighbors = [c7, c11, c13, c15, c19, c20]
+    c13.neighbors = [c7, c8, c9, c12, c14, c15, c16]
+    c14.neighbors = [c8, c9, c13, c16, c17]
+    c15.neighbors = [c12, c13, c16, c20]
+    c16.neighbors = [c13, c14, c15, c17, c20, c21]
+    c17.neighbors = [c14, c16, c21, c22]
+    c18.neighbors = [c10, c11, c19, c23, c24]
+    c19.neighbors = [c11, c12, c18, c20, c23, c25]
+    c20.neighbors = [c12, c15, c16, c19, c21, c25, c28, c32]
+    c21.neighbors = [c16, c17, c20, c22, c32, c34]
+    c22.neighbors = [c17, c21, c34]
+    c23.neighbors = [c18, c19, c24, c25]
+    c24.neighbors = [c23, c25, c26, c27]
+    c25.neighbors = [c19, c20, c23, c26, c28]
+    c26.neighbors = [c24, c25, c27, c28]
+    c27.neighbors = [c24, c26, c28, c29]
+    c28.neighbors = [c20, c25, c26, c27, c29, c31, c32]
+    c29.neighbors = [c27, c28, c30]
+    c30.neighbors = [c29]
+    c31.neighbors = [c28, c32, c35, c36]
+    c32.neighbors = [c20, c21, c28, c31, c33, c34, c35]
+    c33.neighbors = [c32, c34, c35, c37]
+    c34.neighbors = [c21, c22, c32, c33]
+    c35.neighbors = [c31, c32, c36, c37]
+    c36.neighbors = [c31, c35]
+    c37.neighbors = [c33, c35]
     amountofattackingtroops=0
 
 
@@ -161,7 +161,15 @@ class US_STATE:
                 if blueTroops == 0:
                     canAddBlue = False
     def updateStateAI(self):
-        if self.turn:
+        if self.turn :
+            if self.agent2.attack(self.countries):
+                self.turn=False
+        else:
+            if self.agent1.attack(self.countries):
+                self.turn=True
+
+    def updateStatehuman(self):
+        if self.turn :
             if self.agent2.takeTurn():
                 self.turn = False
         else:

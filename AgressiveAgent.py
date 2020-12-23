@@ -20,7 +20,7 @@ class AgressiveAgent(Agent):
                 country = c
         return country
 
-    def attack(self):
+    def attack(self,countries):
         print("waslt la attack el aggresive")
         return True
 
