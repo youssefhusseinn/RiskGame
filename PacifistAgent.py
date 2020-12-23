@@ -12,11 +12,13 @@ class PacifistAgent(Agent):
         country.addTroops(amount)
         self.attack()
 
-    def attackold(self):
+    def attack(self):
         (attackerCountry, defenderCountry) = self.getOpponentCountryWithMinimumTroops()
-        if attackerCountry is None:
+        if attackerCountry is None or attackerCountry not in self.countries:
             return
-        defenderCountry.agent = self
+
+        defenderCountry.owner.removeCountry(defenderCountry)
+        defenderCountry.owner = self
         defenderCountry.numOfTroops = attackerCountry.numOfTroops - 1
         attackerCountry.numOfTroops = 1
 
@@ -24,28 +26,28 @@ class PacifistAgent(Agent):
     def chooseCountryToAddTroops(self) -> Country:
         country = None
         mintroops = 10e6
-        for c in self.countries.keys():
-            if self.countries[c] < mintroops:
+        for c in self.countries:
+            if c.numOfTroops < mintroops:
                 country = c
-                mintroops = self.countries[c]
+                mintroops = c.numOfTroops
         return country
 
     def getOpponentCountryWithMinimumTroops(self) -> (Country, Country):
-        mylist = list([Country])
+        mylist = []
         myset = set([Country])
         minimumval = 10e6
         maximumval = 1
         attacker = None
         defender = None
+        # for country in self.countries:
+        #     myset.add(country)
+        #     mylist.append(country)
         for country in self.countries:
-            myset.add(country)
-            mylist.append(country)
-        for country in mylist:
             for neighbor in country.neighbors:
-                if neighbor not in myset:
-                    if maximumval <= self.countries[country] and minimumval >= neighbor.getNumberOfTroops():
-                        maximumval = self.countries[country]
-                        minimumval = neighbor.getNumberOfTroops()
+                if neighbor not in self.countries:
+                    if maximumval <= country.numOfTroops and minimumval >= neighbor.numOfTroops:
+                        maximumval = country.numOfTroops
+                        minimumval = neighbor.numOfTroops
                         attacker = country
                         defender = neighbor
         return attacker, defender

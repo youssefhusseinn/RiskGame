@@ -1,7 +1,6 @@
 from Agent import *
 import ctypes
 
-
 class PassiveAgent(Agent):
     def attack(self,countries):
         self.takeTurn(countries)

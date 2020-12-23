@@ -170,8 +170,17 @@ class US_STATE:
 
     def updateStatehuman(self):
         if self.turn :
+            if self.agent2.takeTurn():
+                self.turn = False
+        else:
+            if self.agent1.takeTurn():
+                self.turn = True
+
+    def updateStatehuman(self):
+        #self.agent1.ca
+        if self.turn:
             if self.agent2.attack(self.attackingCountries[0],self.attackingCountries[1],self.amountofattackingtroops):
-                self.turn=False
+                self.turn = False
         else:
             if self.agent1.attack(self.attackingCountries[0],self.attackingCountries[1],int(self.amountofattackingtroops)):
-                self.turn=True
+                self.turn = True
