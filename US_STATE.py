@@ -16,8 +16,8 @@ class US_STATE:
         self.agent1 = agent1
         self.agent2 = agent2
     c1 = Country("us1")
-    c2 = Country( "us2")
-    c3 = Country( "us3")
+    c2 = Country("us2")
+    c3 = Country("us3")
     c4 = Country("us4")
     c5 = Country("us5")
     c6 = Country("us6")
@@ -161,17 +161,6 @@ class US_STATE:
                 if blueTroops == 0:
                     canAddBlue = False
     def updateStateAI(self):
-        if self.turn :
-            self.agent2.takeTurn()
-            self.turn=False
-        else:
-            self.agent1.takeTurn()
-            self.turn=True
-
-    def updateStatehuman(self):
-        if self.turn :
-            if self.agent2.takeTurn():
-                self.turn = False
         if self.turn:
             self.agent2.takeTurn()
             self.turn = False
@@ -180,15 +169,10 @@ class US_STATE:
             self.turn = True
 
     def updateStatehuman(self):
+        #self.agent1.ca
         if self.turn:
-            self.agent2.bonusTroops=self.agent2.calcBonusTroops()
             if self.agent2.attack(self.attackingCountries[0],self.attackingCountries[1],self.amountofattackingtroops):
                 self.turn = False
         else:
-            self.agent1.bonusTroops = self.agent1.calcBonusTroops()
             if self.agent1.attack(self.attackingCountries[0],self.attackingCountries[1],int(self.amountofattackingtroops)):
-
                 self.turn = True
-        print("Agent1 Bonus Troops: "+str(self.agent1.bonusTroops))
-        print("Agent2 bonus Troops: "+str(self.agent2.bonusTroops))
-        print("**************")

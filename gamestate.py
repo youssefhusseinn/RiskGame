@@ -6,4 +6,3 @@ class GameState(Enum):
     NEWGAME = 1
     egypt= 2
     us=3
-    SELECTAGNETS=4
