@@ -95,7 +95,7 @@ class US_STATE:
     attackingCountries=[]  # carry the attaching to and from country
 
     turn=False   #false for agent 1  -----------    true for agent 2
-    countries=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10,
+    countries= [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10,
                c11, c12, c13, c14, c15,c16,c17, c18,
                c19, c20, c21, c22, c23, c24, c25, c26,
                c27, c28, c29,c30, c31,c32, c33, c34, c35, c36, c37]
@@ -172,9 +172,12 @@ class US_STATE:
         if self.turn :
             if self.agent2.takeTurn():
                 self.turn = False
+        if self.turn:
+            self.agent2.takeTurn()
+            self.turn = False
         else:
-            if self.agent1.takeTurn():
-                self.turn = True
+            self.agent1.takeTurn()
+            self.turn = True
 
     def updateStatehuman(self):
         #self.agent1.ca

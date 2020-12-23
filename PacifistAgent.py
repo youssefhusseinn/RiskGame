@@ -2,9 +2,6 @@ from Agent import *
 
 
 class PacifistAgent(Agent):
-    def attack(self,countries):
-        print("waslt la attack el pacifist")
-        return True
 
     def takeTurn(self):
         country = self.chooseCountryToAddTroops()
@@ -19,6 +16,7 @@ class PacifistAgent(Agent):
 
         defenderCountry.owner.removeCountry(defenderCountry)
         defenderCountry.owner = self
+        self.countries.append(defenderCountry)
         defenderCountry.numOfTroops = attackerCountry.numOfTroops - 1
         attackerCountry.numOfTroops = 1
 

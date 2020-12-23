@@ -24,14 +24,13 @@ class Agent:
     def removeCountry(self, country: Country):
         self.countries.remove(country)
 
-    def calcBonusTroops(self) :
+    def calcBonusTroops(self):
         numberOfCountries = len(self.countries)
         return max(3, numberOfCountries // 3)
 
 
     def attack(self):
         # depends on each agent.. every agent has his own attacking algorithm
-
         pass
 
     def addTroops(self, amount):

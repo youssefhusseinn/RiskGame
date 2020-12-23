@@ -23,7 +23,7 @@ def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
 
 class UIElement(Sprite):
     """ An user interface element that can be added to a surface """
-
+    agentsArray=[]
     def __init__(self, center_position, text, font_size, bg_rgb, text_rgb,id,action=None):
 
         """
@@ -87,6 +87,33 @@ class UIElement(Sprite):
                 state.updateStateAI()
         else:
             self.mouse_over = False
+    def update_select(self,mouse_pos, mouse_up,text,color,state):
+        agent=None
+
+        if self.rect.collidepoint(mouse_pos):
+            self.mouse_over = True
+            if mouse_up:
+                if (text == "HUMAN"):
+                    agent = Human("HUMAN", color)
+                if (text == "AGRESSIVE"):
+                    agent = AgressiveAgent("AGRESSIVE", color)
+                if (text == "PACIFIST"):
+                    agent = PacifistAgent("PACIFIST", color)
+                if (text == "GREEDY"):
+                    agent = GreedyAgent("GREEDY", color)
+                if (text == "PASSIVE"):
+                    agent = PassiveAgent("PASSIVE", color)
+                if len(self.agentsArray) < 2:
+                    self.agentsArray.append(agent)
+                if (len(self.agentsArray) == 2):
+                    state.agent1 = self.agentsArray[0]
+                    state.agent2 = self.agentsArray[1]
+                    self.agentsArray.clear()
+                    return
+        else:
+            self.mouse_over = False
+        print(self.agentsArray)
+
 
     def actionbutton(self,mouse_pos,mouse_up,state,country):
 
