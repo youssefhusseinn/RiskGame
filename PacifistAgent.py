@@ -2,7 +2,7 @@ from Agent import *
 
 
 class PacifistAgent(Agent):
-    def attack(self):
+    def attack(self,countries):
         print("waslt la attack el pacifist")
         return True
 
