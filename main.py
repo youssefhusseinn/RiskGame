@@ -40,6 +40,7 @@ def main():
     random_state=US_STATE(None,None)
     while running:
 
+
         if game_state == GameState.TITLE:
             game_state = title_screen(screen)
 

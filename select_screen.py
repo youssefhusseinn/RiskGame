@@ -172,6 +172,7 @@ def select_screen(screen,state):
                 return ui_action
             button.draw(screen)
         for button in selection_buttons:
+
             ui_action = button.update_select(pygame.mouse.get_pos(), mouse_up,button.text,button.text_rgb,state)
             if ui_action is not None:
                 return ui_action
