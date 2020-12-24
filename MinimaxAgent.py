@@ -3,11 +3,11 @@ from Node import *
 from US_STATE import *
 class MinimaxAgent(Agent):
 
-    def takeTurn(self):
+    def takeTurn(self, countries):
         #initialize state
         #intitialState = Node(US_STATE.countries, self)
 
-        self.attack(US_STATE.countries)
+        self.attack(countries)
 
 
 
@@ -32,11 +32,11 @@ class MinimaxAgent(Agent):
                 self.countries.append(c)
             else:
                 mp[c.id].owner = opponent
-                opponent.countries.append(c)
+                opponent.countries.append(mp[c.id])
             mp[c.id].numOfTroops = c.numOfTroops
 
     def decision(self, state) -> [Country]:
-        (child, x) = self.maximize(state, 0)
+        (child, x) = self.maximize(state, 0, -1e9, 1e9)
         return child
 
     def heuristic(self, state: [Country]):
@@ -56,19 +56,22 @@ class MinimaxAgent(Agent):
         return attacking+defending
 
 
-    def maximize(self, state, depth) -> ([Country], int):
+    def maximize(self, state, depth, alpha, beta) -> ([Country], int):
         # evaluate heuristic of state
         stateVal = self.heuristic(state)
         if depth == 2:
             return (state, stateVal)
         (maxState, maxVal) = (None, -1e9)
         bonus = self.calcBonusTroops()
-        broke1 = False
+        done = False
         for bonusCountry in state:
+            if done:
+                break
             if bonusCountry.owner == self:
                 bonusCountry.numOfTroops += bonus
-
                 for c in state:
+                    if done:
+                        break
                     if c.owner == self:
                         for neighbor in c.neighbors:
                             if neighbor.owner != self and neighbor.numOfTroops < c.numOfTroops - 1:
@@ -81,7 +84,7 @@ class MinimaxAgent(Agent):
                                 neighbor.numOfTroops = attackerTroops - 1
                                 c.numOfTroops = 1
                                 neighbor.ownerboolean = True
-                                (newstate, utility) = self.minimize(state, depth+1)
+                                (newstate, utility) = self.minimize(state, depth+1, alpha, beta)
 
                                 if utility > maxVal:
                                     maxVal = utility
@@ -95,21 +98,32 @@ class MinimaxAgent(Agent):
                                 self.removeCountry(neighbor)
                                 defenderOwner.countries.append(neighbor)
 
+                                if maxVal >= beta:
+                                    done = True
+                                if done:
+                                    break
+                                if maxVal > alpha:
+                                    alpha = maxVal
                 bonusCountry.numOfTroops -= bonus
         return (maxState, maxVal)
 
 
-    def minimize(self, state, depth) -> ([Country], int):
+    def minimize(self, state, depth, alpha, beta) -> ([Country], int):
         # evaluate heuristic of state
         stateVal = self.heuristic(state)
         if depth == 2:
             return (state, stateVal)
         (minState, minVal) = (None, 1e9)
         bonus = self.calcBonusTroops()
+        done = False
         for bonusCountry in state:
+            if done:
+                break
             if bonusCountry.owner != self:
                 bonusCountry.numOfTroops += bonus
                 for c in state:
+                    if done:
+                        break
                     if c.owner != self:
                         for neighbor in c.neighbors:
                             if neighbor.owner == self and neighbor.numOfTroops < c.numOfTroops - 1:
@@ -122,7 +136,7 @@ class MinimaxAgent(Agent):
                                 neighbor.numOfTroops = attackerTroops - 1
                                 c.numOfTroops = 1
                                 neighbor.ownerboolean = False
-                                (newstate, utility) = self.maximize(state, depth+1)
+                                (newstate, utility) = self.maximize(state, depth+1, alpha, beta)
 
                                 if utility < minVal:
                                     minVal = utility
@@ -135,6 +149,13 @@ class MinimaxAgent(Agent):
                                 neighbor.ownerboolean = True
                                 c.owner.removeCountry(neighbor)
                                 defenderOwner.countries.append(neighbor)
+
+                                if minVal <= alpha:
+                                    done = True
+                                if done:
+                                    break
+                                if minVal < beta:
+                                    beta = minVal
                 bonusCountry.numOfTroops -= bonus
         return (minState, minVal)
 

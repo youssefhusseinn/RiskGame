@@ -161,7 +161,15 @@ class US_STATE:
                 if blueTroops == 0:
                     canAddBlue = False
     def updateStateAI(self):
-        if self.turn :
+        if (self.turn and self.agent2.type=="MINIMAX") :
+            self.agent2.takeTurn(self.countries)
+            self.turn=False
+
+        elif (not self.turn and self.agent1.type=="MINIMAX"):
+            self.agent1.takeTurn(self.countries)
+            self.turn=True
+
+        elif self.turn :
             self.agent2.takeTurn()
             self.turn=False
         else:
