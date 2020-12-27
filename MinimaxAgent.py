@@ -1,7 +1,11 @@
 from Agent import *
-from Node import *
 from US_STATE import *
+import copy
 class MinimaxAgent(Agent):
+
+    def __init__(self, type, color):
+        super().__init__(type, color)
+        self.bonus_country = self.attack_country = self.defend_country = None
 
     def takeTurn(self, countries):
         #initialize state
@@ -23,6 +27,8 @@ class MinimaxAgent(Agent):
                 opponent = c.owner
 
         newCountries = self.decision(state)
+        if newCountries == None:
+            return
 
         self.countries.clear()
         opponent.countries.clear()
@@ -34,6 +40,24 @@ class MinimaxAgent(Agent):
                 mp[c.id].owner = opponent
                 opponent.countries.append(mp[c.id])
             mp[c.id].numOfTroops = c.numOfTroops
+
+        b = mp[self.bonus_country]
+        a = mp[self.attack_country]
+        d = mp[self.defend_country]
+
+
+        use_timer = False
+        if use_timer:
+
+            t = threading.Timer(3, self.setTroops, args=(
+
+            d, a, b, d.numOfTroops, a.numOfTroops,
+            b.numOfTroops))
+            t.start()
+            b.numOfTroops = str(b.numOfTroops) + ' B'
+            a.numOfTroops = str(a.numOfTroops) + 'A'
+            d.numOfTroops = str(d.numOfTroops) + "D"
+
 
     def decision(self, state) -> [Country]:
         (child, x) = self.maximize(state, 0, -1e9, 1e9)
@@ -89,6 +113,9 @@ class MinimaxAgent(Agent):
                                 if utility > maxVal:
                                     maxVal = utility
                                     maxState = copy.deepcopy(state)
+                                    self.attack_country = c.id
+                                    self.defend_country = neighbor.id
+                                    self.bonus_country = bonusCountry.id
 
 
                                 c.numOfTroops = attackerTroops
@@ -159,6 +186,10 @@ class MinimaxAgent(Agent):
                 bonusCountry.numOfTroops -= bonus
         return (minState, minVal)
 
+    def setTroops(self, d,a,b, dnum, anum, bnum):
+        d.numOfTroops = dnum
+        a.numOfTroops = anum
+        b.numOfTroops = bnum
 
     def chooseCountryToAddTroops(self) -> Country:
         pass

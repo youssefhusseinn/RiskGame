@@ -3,6 +3,8 @@ import pygame.freetype
 from pygame.sprite import Sprite
 import US_STATE
 from MinimaxAgent import MinimaxAgent
+from RealTimeAStarAgent import RealTimeAStarAgent
+from AStarAgent import AStarAgent
 from US_STATE import *
 import main
 import math
@@ -16,6 +18,7 @@ BLUE = (9, 5, 101)
 WHITE = (255, 255, 255)
 DARKRED=(229,12,22)
 DARKBLUE=(2,8,126)
+BLACK=(0,0,0)
 def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
     """ Returns surface with text written on """
     font = pygame.freetype.SysFont("Courier", font_size, bold=True)
@@ -25,6 +28,7 @@ def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
 class UIElement(Sprite):
     """ An user interface element that can be added to a surface """
     agentsArray=[]
+    colorsArray=[]
     def __init__(self, center_position, text, font_size, bg_rgb, text_rgb,id,action=None):
 
         """
@@ -73,6 +77,15 @@ class UIElement(Sprite):
     @property
     def rect(self):
             return self.rects[1] if self.mouse_over else self.rects[0]
+    def restart(self,mouse_pos,mouse_up,state):
+        if self.rect.collidepoint(mouse_pos):
+            self.mouse_over = True
+            if mouse_up:
+                state.restart()
+                return self.action
+        else:
+            self.mouse_over = False
+
     def update(self, mouse_pos,mouse_up):
 
             if self.rect.collidepoint(mouse_pos):
@@ -94,9 +107,23 @@ class UIElement(Sprite):
 
         if self.rect.collidepoint(mouse_pos):
             self.mouse_over = True
+
             if mouse_up:
+                if len(self.colorsArray)==0:
+                    self.update_text(text,BLACK)
+                    self.colorsArray.append(self)
+
+                elif len(self.colorsArray)==1 and self.colorsArray[0].center_position!=self.center_position[1]:
+                    self.update_text(text, BLACK)
+                    self.colorsArray.append(self)
+                else:
+                    for el in self.colorsArray:
+                        el.update_text(el.text,el.text_rgb)
+                    self.colorsArray.clear()
+
                 if (text == "HUMAN"):
                     agent = Human("HUMAN", color)
+
                 if (text == "AGRESSIVE"):
                     agent = AgressiveAgent("AGRESSIVE", color)
                 if (text == "PACIFIST"):
@@ -104,15 +131,21 @@ class UIElement(Sprite):
                 if (text == "GREEDY"):
                     agent = GreedyAgent("GREEDY", color)
                 if (text == "PASSIVE"):
+
                     agent = PassiveAgent("PASSIVE", color)
                 if (text == "MINIMAX"):
                     agent = MinimaxAgent("MINIMAX", color)
+                if (text == "ASTAR"):
+                    agent = AStarAgent("ASTAR", color)
+                if (text == "RTA*"):
+                    agent = RealTimeAStarAgent("RTA*", color)
                 if len(self.agentsArray) < 2:
                     self.agentsArray.append(agent)
                 if (len(self.agentsArray) == 2):
                     state.agent1 = self.agentsArray[0]
                     state.agent2 = self.agentsArray[1]
                     self.agentsArray.clear()
+
                     return
         else:
             self.mouse_over = False
@@ -176,8 +209,4 @@ class UIElement(Sprite):
         if self.id==id:
             return True
         return False
-    def showPlus(self):
-        print('Show plus')
-        self.text="0000"
-        return
 

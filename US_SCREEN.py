@@ -118,7 +118,6 @@ def us_screen(screen,agent1,agent2):
                 for c in state.agent1.countries:
                     arr2.append(c.id)
                 if button.num in arr2:
-
                     button.update_text(str(state.countries[button.id].numOfTroops) + '+',
                                        state.countries[button.id].owner.color)
 
@@ -150,7 +149,7 @@ def us_screen(screen,agent1,agent2):
             return ui_action5
         if ui_action2 is not None:
             return ui_action2
-        ui_action3 = return_btn.update(pygame.mouse.get_pos(), mouse_up)
+        ui_action3 = return_btn.restart(pygame.mouse.get_pos(), mouse_up,state)
         if ui_action3 is not None:
             return ui_action3
         ui_action4 = GO_LABEL.updateAI(pygame.mouse.get_pos(), mouse_up,state)

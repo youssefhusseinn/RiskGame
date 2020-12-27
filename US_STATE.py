@@ -1,4 +1,6 @@
 import random
+import time
+
 from  AgressiveAgent import *
 BLUE = (9, 5, 101)
 WHITE = (255, 255, 255, 0)
@@ -15,6 +17,7 @@ class US_STATE:
     def __init__(self,agent1,agent2):
         self.agent1 = agent1
         self.agent2 = agent2
+        self.gameCounter=0
     c1 = Country("us1")
     c2 = Country( "us2")
     c3 = Country( "us3")
@@ -75,7 +78,7 @@ class US_STATE:
     c21.neighbors = [c16, c17, c20, c22, c32, c34]
     c22.neighbors = [c17, c21, c34]
     c23.neighbors = [c18, c19, c24, c25]
-    c24.neighbors = [c23, c25, c26, c27]
+    c24.neighbors = [c18, c23, c25, c26, c27]
     c25.neighbors = [c19, c20, c23, c26, c28]
     c26.neighbors = [c24, c25, c27, c28]
     c27.neighbors = [c24, c26, c28, c29]
@@ -96,7 +99,7 @@ class US_STATE:
 
     turn=False   #false for agent 1  -----------    true for agent 2
     countries= [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10,
-               c11, c12, c13, c14, c15,c16,c17, c18,
+               c11, c12, c13, c14, c15, c16, c17, c18,
                c19, c20, c21, c22, c23, c24, c25, c26,
                c27, c28, c29,c30, c31,c32, c33, c34, c35, c36, c37]
 
@@ -106,7 +109,6 @@ class US_STATE:
         if country not in self.attackingCountries:
             self.attackingCountries.append(country)
         if len(self.attackingCountries) ==2:
-            print(self.attackingCountries)
             if (not self.turn and self.agent1.type == "HUMAN") or (self.turn and self.agent2.type == "HUMAN"):
                  self.updateStatehuman()
         if len(self.attackingCountries) >=2:
@@ -120,16 +122,34 @@ class US_STATE:
 
 
     def initializeState(self):
+
         available_countries = [self.c1, self.c2, self.c3, self.c4, self.c5, self.c6, self.c7, self.c8, self.c9, self.c10,
                                self.c11, self.c12, self.c13, self.c14, self.c15, self.c16, self.c17, self.c18, self.c19,
                                self.c20, self.c21, self.c22, self.c23, self.c24, self.c25, self.c26, self.c27, self.c28, self.c29,
                                self.c30, self.c31, self.c32, self.c33, self.c34, self.c35, self.c36, self.c37]
+        for i in range(19):
+           available_countries[i].owner=self.agent1
+           self.agent1.addCountry(available_countries[i])
+           if i < 18:
+               available_countries[i].addTroops(1)
+           else:
+               available_countries[i].addTroops(3)
+        for i in range(19,37):
+           available_countries[i].owner=self.agent2
+           self.agent2.addCountry(available_countries[i])
+           if i == 20:
+               available_countries[i].addTroops(3)
+           else:
+               available_countries[i].addTroops(1)
+
+
+    """"
         redTroops = 40
         blueTroops = 40
 
         canAddRed = True
         canAddBlue = True
-
+        
         while canAddRed or canAddBlue:
             # redTroops
             if canAddRed:
@@ -160,43 +180,83 @@ class US_STATE:
                 country.addTroops(1)
                 if blueTroops == 0:
                     canAddBlue = False
+        """
     def updateStateAI(self):
-        if (self.turn and self.agent2.type=="MINIMAX") :
+        if (self.turn and (self.agent2.type=="MINIMAX" or self.agent2.type == "ASTAR"or self.agent2.type=="RTA*" or self.agent2.type == "GREEDY")) :
+            #print("GameCounter: " + str(self.gameCounter))
+            #print("Blue Player")
             self.agent2.takeTurn(self.countries)
             self.turn=False
+            self.checkEndGame()
 
-        elif (not self.turn and self.agent1.type=="MINIMAX"):
+
+
+        elif (not self.turn and(self.agent1.type=="MINIMAX" or self.agent1.type == "ASTAR"or self.agent1.type=="RTA*" or self.agent1.type == "GREEDY")):
+            self.gameCounter += 1
+            #print("GameCounter: " + str(self.gameCounter))
+            #print("Red Player")
             self.agent1.takeTurn(self.countries)
             self.turn=True
+            self.checkEndGame()
+
+
 
         elif self.turn :
+            #print("GameCounter: " + str(self.gameCounter))
+            #print("Blue Player")
             self.agent2.takeTurn()
             self.turn=False
+            self.checkEndGame()
+
+
+  
         else:
+            self.gameCounter += 1
+            #print("GameCounter: " + str(self.gameCounter))
             self.agent1.takeTurn()
             self.turn=True
-
-    def updateStatehuman(self):
-        if self.turn :
-            if self.agent2.takeTurn():
-                self.turn = False
-        if self.turn:
-            self.agent2.takeTurn()
-            self.turn = False
-        else:
-            self.agent1.takeTurn()
-            self.turn = True
-
+            self.checkEndGame()
+        #self.updateStateAI()
     def updateStatehuman(self):
         if self.turn:
             self.agent2.bonusTroops=self.agent2.calcBonusTroops()
             if self.agent2.attack(self.attackingCountries[0],self.attackingCountries[1],self.amountofattackingtroops):
                 self.turn = False
+                self.checkEndGame()
+            else:
+                ctypes.windll.user32.MessageBoxW(0, "PLEASE SELECT VALID ATTACK !", 1)
+                self.agent2.bonusTroops = 0
+
+
         else:
             self.agent1.bonusTroops = self.agent1.calcBonusTroops()
             if self.agent1.attack(self.attackingCountries[0],self.attackingCountries[1],int(self.amountofattackingtroops)):
-
                 self.turn = True
-        print("Agent1 Bonus Troops: "+str(self.agent1.bonusTroops))
-        print("Agent2 bonus Troops: "+str(self.agent2.bonusTroops))
-        print("**************")
+                self.checkEndGame()
+            else:
+                ctypes.windll.user32.MessageBoxW(0, "PLEASE SELECT VALID ATTACK !", 1)
+                self.agent1.bonusTroops=0
+
+
+
+    def checkEndGame(self):
+        if len(self.agent1.countries) == 0:
+            ctypes.windll.user32.MessageBoxW(0, "PLAYER 2 WINS", "ALERT", 1)
+            self.restart()
+        if len(self.agent2.countries) == 0:
+            ctypes.windll.user32.MessageBoxW(0, "PLAYER 1 WINS", "ALERT", 1)
+            self.restart()
+
+
+    def restart(self):
+        for c in self.agent1.countries:
+            c.numOfTroops = 0
+        for c in self.agent2.countries:
+            c.numOfTroops = 0
+        self.agent1.countries.clear()
+        self.agent2.countries.clear()
+        self.agent1.bonusTroops=0
+        self.agent2.bonusTroops=0
+
+        self=US_STATE(self.agent1,self.agent2)
+        self.initializeState()
